@@ -79,7 +79,7 @@ export class LoginComponent implements OnInit {
 
           // handle if user checked rememberMe -- naresh
 
-          this.rememberMe ? this.rememberme() : "";
+          //this.rememberMe ? this.rememberme() : "";
         },
         error => {
           let ob = ErrorConstants.validateException(error.error);
