@@ -1,0 +1,62 @@
+{
+    "moduleId": 4,
+    "objectId": 1,
+    "entityId": 0,
+    "moduleName": "Credit",
+    "entityName": "Test",
+    "subEntityName": "SE1",
+    "channel": "WEB",
+    "id": 0,
+    "isPublic": 0,
+    "permissionId": 0,
+    "channelId": 0,
+    "attributeExclutionList": [
+      {
+        "attributeName": "obj1attribute1",
+        "createdBy": "1",
+        "updatedBY": "1",
+        "description": "test description",
+        "permissionId": 0,
+        "objectId": 1,
+        "objectattribute_id": 0,
+        "obj_role_perm_map_id": 0,
+        "effectiveDate": "2019-09-09T12:59:35.568+0000",
+        "id": 1
+      },
+      {
+        "attributeName": "objattribute2",
+        "createdBy": "1",
+        "updatedBY": "1",
+        "description": "test attribute description2",
+        "permissionId": 0,
+        "objectId": 1,
+        "objectattribute_id": 0,
+        "obj_role_perm_map_id": 0,
+        "effectiveDate": "2019-09-09T12:59:35.568+0000",
+        "id": 2
+      },
+      {
+        "attributeName": "SE31attribute1",
+        "createdBy": "1",
+        "updatedBY": "1",
+        "permissionId": 0,
+        "objectId": 30,
+        "objectattribute_id": 0,
+        "obj_role_perm_map_id": 0,
+        "effectiveDate": "2019-10-03T11:34:50.178+0000",
+        "id": 3
+      },
+      {
+        "attributeName": "SE31attribute1",
+        "createdBy": "1",
+        "updatedBY": "1",
+        "permissionId": 0,
+        "objectId": 30,
+        "objectattribute_id": 0,
+        "obj_role_perm_map_id": 0,
+        "effectiveDate": "2019-10-03T11:34:50.178+0000",
+        "id": 3
+      }
+    ],
+    "status": 0
+  }

@@ -1,0 +1,41 @@
+p {
+    margin-left: 2%;
+  }
+
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+  .example-icon {
+    padding: 0 27px
+  }
+  table {
+    width: 100%;
+  }
+  .tlabel{
+      background: whitesmoke
+  }
+  
+
+
+  /* todo - remove it  */
+  .tmpBtn {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    /* background: red; */
+    width: 350px;
+    z-index: 9999999999;
+}
+
+.tmpBtn ul {
+    list-style: none;
+}
+
+.tmpBtn ul button {
+    background: #e6e6e6;
+    border: 0;
+    border-right: 1px solid #d8d8d8;
+    padding: 10px;
+}
+  /* end - remove it */
+   

@@ -1,0 +1,77 @@
+.material-icons {
+  color:  #81C784
+}
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 2px grey;
+  border-radius: 10px;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #81C784;
+  border-radius: 10px;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #81C784;
+}
+.example-button-row button,
+.example-button-row a {
+margin-right: 8px;
+}
+.mat-raised-button.mat-primary {
+  background-color:  #81C784;
+}
+.mat-raised-button {
+  color : currentColor;
+}
+.mat-raised-button:not([disabled]):hover {
+  background-color: rgb(33, 110, 36);
+}
+.mat-raised-button[disabled] {
+  color : #F1F1F1;
+  background-color: transparent;
+}
+.btn1 {
+  color : rgb(49, 46, 46);
+  background-color: rgba(255, 222, 121, 0.96);
+  border-radius: 20px 20px 20px 20px;
+  font-size: 16px;
+  color:white
+}
+.btn1:not([disabled]):hover {
+  background-color:  rgb(33, 110, 36);
+    color: white;
+}
+.mat-divider {
+  border-top-color: #81C784;
+  border-top-width: 2px;
+  
+  
+}
+::ng-deep .mat-checkbox .mat-checkbox-frame {
+border-color: #81C784;
+}
+::ng-deep .mat-checkbox-checked .mat-checkbox-background {
+background-color: #81C784 !important;
+}
+::ng-deep .mat-expansion-panel-header
+{
+  height: 50px !important;
+  
+}
+th{
+background: #F1F1F1
+}
+select{
+
+color: #81C784;
+}
+select option:hover { color: black; }
+select option:first-child:hover{
+color: #81C784;
+}

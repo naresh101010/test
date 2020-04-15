@@ -1,0 +1,152 @@
+{
+    "message": "success",
+    "msaData": [
+      {
+        "accType": "saving",
+        "alternateMobile": "12345690",
+        "attr1": "1234",
+        "attr2": "234",
+        "attr3": 0,
+        "attr4": 0,
+        "baseLocation": "Delhi",
+        "cneeCnor": [
+          {
+            "addrBook": {
+              "addr1": "Gurgaon",
+              "addr2": "Noida",
+              "addr3": "Faridabad",
+              "id": 0,
+              "latitude": 0,
+              "longitude": 0,
+              "pincodeId": 0
+            },
+            "addrBookId": 0,
+            "address": "Mahipalpur",
+            "city": "Delhi",
+            "email": "abc@safexpress",
+            "gstinNum": "1234565432",
+            "id": 0,
+            "lkpConsigntypeId": "xyz",
+            "mob": "1234567890",
+            "msaCustId": 0,
+            "name": "Sarvjyoti ",
+            "panNum": "11234",
+            "pincode": "12345",
+            "tanNum": "123456"
+          }
+        ],
+        "custName": "Mayank Rai",
+        "descr": "1234",
+        "email": "xyz@gmail.com",
+        "groupCode": "1234",
+        "gstinNum": "789",
+        "id": 0,
+        "mnthPotential": 0,
+        "mobile": "678",
+        "oldMsaCustId": 0,
+        "opprId": 0,
+        "opprName": "345678",
+        "originatingSrc": "hello",
+        "pan": "2345",
+        "phone": "0591-244001",
+        "segment": "45678",
+        "sfdcAccId": "u56789",
+        "sfdcMnthPotential3pl": 0,
+        "sfdcMnthPotentialAir": 0,
+        "sfdcMnthPotentialSurface": 0,
+        "sfdcOpprId": "45678",
+        "sla": 0,
+        "status": 0,
+        "subSegment": "4567"
+      }
+    ],
+
+
+    
+    "refernceList": {
+      "businessTypeList": [
+        {
+          "id": 0,
+          "lookupVal": "value"
+        }
+      ],
+      "chargeByList": [
+        {
+          "id": 0,
+          "lookupVal": "value"
+        }
+      ],
+      "contractTypeList": [
+        {
+          "id": 0,
+          "lookupVal": "value"
+        }
+      ],
+      "opporTypeList": [
+        {
+          "id": 0,
+          "lookupVal": "value"
+        }
+      ],
+      "packagingTypeList": [
+        {
+          "id": 0,
+          "lookupVal": "value"
+        }
+      ],
+      "productCategoryList": [
+        {
+          "id": 0,
+          "lookupVal": "value"
+        }
+      ],
+      "rateGroupList": [
+        {
+          "id": 0,
+          "lookupVal": "value"
+        }
+      ],
+      "safexPincodeGroupList": [
+        {
+          "id": 0,
+          "lookupVal": "value"
+        }
+      ],
+      "safexTypeList": [
+        {
+          "id": 0,
+          "lookupVal": "value"
+        }
+      ],
+      "serviceLineList": [
+        {
+          "id": 0,
+          "lookupVal": "value"
+        }
+      ],
+      "serviceOfferingList": [
+        {
+          "id": 0,
+          "lookupVal": "value"
+        }
+      ],
+      "slabProtectTypeList": [
+        {
+          "id": 0,
+          "lookupVal": "value"
+        }
+      ],
+      "stateGroupList": [
+        {
+          "id": 0,
+          "lookupVal": "value"
+        }
+      ],
+      "statusList": [
+        {
+          "id": 0,
+          "lookupVal": "value"
+        }
+      ]
+    }
+}

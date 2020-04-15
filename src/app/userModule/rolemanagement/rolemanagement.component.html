@@ -1,0 +1,118 @@
+<!-- 18-Nov-2017 -->
+<div class="row text-left">
+    <div class="breadcrumb2">
+      <a href="/#/user-management/object" target="_self">
+        Dashboard</a><span class="fa fa-caret-right"></span>
+       MDM<span class="fa fa-caret-right"></span>
+       Role Management
+  </div>
+  <h2 class="dashboard-heading">Role Management</h2>
+  <a  class="text-right align"  style="text-align: right;"><i (click)="ExportTOExcel()" style="cursor: pointer;">Download Roles Details</i></a>
+</div>
+  <!-- 18-Nov-2017 -->
+  <div class="dashboard-first-container" fxLayout  fxLayout.xs="column wrap"  fxLayoutAlign="center" fxLayoutGap="0px" fxLayoutGap.xs="0px">
+    <div class="item item-4" fxFlex="100%"  fxFlexOffset.xs="0">
+    <mat-card style="flex-wrap: wrap"  class="example-card "  fxFlex="89%" id="lending">
+
+
+      <a routerLink="/user-management/home"  *ngxPermissionsOnly="['CREATE']">
+          <mat-icon id="plusicon" mat-card-avatar aria-label="Example icon">add_circle</mat-icon></a>
+        <span class="fa fa-search fa-lg" id="dashboard-search-r"></span>
+
+        <input class="banner-input1"  (keypress)="validInput($event)" placeholder="SEARCH BY ROLE NAME MINIMUM 3 CHARACTERS...     List in top 10 " maxlength="50"
+        autocomplete="true" (keyup.enter)="applyFilter($event.target.value)">
+
+<hr class="green-border-heading">
+<div  mat-elevation-z8 #TABLE>
+ <table mat-table [dataSource]="dataSource" #table matSort >
+
+   <!-- Position Column -->
+   <ng-container matColumnDef="roleName">
+     <th mat-header-cell *matHeaderCellDef mat-sort-header><p class="th-text"> Role Name </p></th>
+     <td mat-cell *matCellDef="let element"><p class="th-text"> {{element.roleName | uppercase}}</p></td>
+   </ng-container>
+   <ng-container matColumnDef="Start_Date">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header><p class="th-text"> Start Date </p></th>
+    <td mat-cell *matCellDef="let element"><p class="th-text"> {{element.effectiveDate | date: 'dd/MM/yyyy'}}</p></td>
+  </ng-container>
+  <ng-container matColumnDef="End_Date">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header><p class="th-text"> End Date </p></th>
+    <td mat-cell *matCellDef="let element"><p class="th-text"> {{element.expiryDate | date: 'dd/MM/yyyy'}}</p></td>
+  </ng-container>
+
+   <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header><p class="th-text"> Status </p></th>
+    <td mat-cell *matCellDef="let element"><p class="th-text"> {{((element.status==1) ? 'ACTIVE' : 'INACTIVE')}}</p></td>
+    <!-- <ng-container *matCellDef="let element">
+      <td mat-cell ><p class="th-text"> {{((element.status==1) ? 'ACTIVE' : 'INACTIVE')}}</p></td>
+    </ng-container> -->
+    <!-- <ng-template #noReplies><td mat-cell> <p class="th-text">INACTIVE</p> </td>
+      </ng-template> -->
+  </ng-container>
+
+   <!-- Weight Column -->
+   <!-- Symbol Column -->
+   <ng-container matColumnDef="vewdetail">
+     <th mat-header-cell *matHeaderCellDef><p class="th-text-view">View Details</p> </th>
+     <td mat-cell class="viewlink" *matCellDef="let element"  style="padding-left: 0;">
+       <span *ngxPermissionsOnly=" ['READ']" style="cursor: pointer" (click)="onEdit(element)" class="th-text-view"> VIEW </span>
+       <span *ngxPermissionsOnly="['CREATE', 'UPDATE']" style="cursor: pointer"  (click)="onEdit(element)" class="th-text-view">  /EDIT </span>
+     </td>
+   </ng-container>
+
+   <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+ </table>
+</div>
+<ngx-spinner id="spinner" size="large" type="ball-spin-clockwise">
+
+</ngx-spinner>
+<div  [ngStyle]="{'opacity':paginaFlg ? '1':'0'}">
+  <mat-paginator
+  #paginator
+  [pageSize]="10"
+  [pageSizeOptions]="[10, 15, 20]"
+  [showFirstLastButtons]="true"
+></mat-paginator>
+</div>
+    </mat-card>
+  </div>
+
+
+  <div fxFlex="1%"></div>
+
+
+  <!-- do not delete it, right side widgets <div fxFlex="25%" fxLayout="row wrap" fxLayout.xs="column" style="height: 0; width: 100%;">
+    <mat-card class="example-card" id="lending2" >
+      <mat-card-header>
+        <div fxLayout="row wrap">
+            <a routerLink="/usercreate" style="cursor: pointer;" *ngIf="(userPermission.includes('CREATE'))">
+              <mat-icon id="plusicon" mat-card-avatar aria-label="Example icon">add_circle</mat-icon>
+            </a>
+        <a routerLink="/user" id="routerlink">User Management</a></div>
+      </mat-card-header>
+      <hr class="green-border">
+      <div class="side-box">
+      <a routerLink="/user">
+      <span class="fa fa-search fa-lg" id="dashboard-side-search"></span>
+      <input class="banner-input" placeholder="Search">
+    </a>
+    </div>
+    </mat-card>
+     <mat-card class="example-card" id="lending3">
+      <mat-card-header>
+      <div fxLayout="row wrap">
+      <a routerLink="/object" id="routerlink">
+        Object Management</a></div>
+      </mat-card-header>
+      <hr class="green-border">
+      <div class="side-box">
+        <a routerLink="/object" >
+      <span class="fa fa-search fa-lg" id="dashboard-side-search"></span>
+      <input class="banner-input" placeholder="Search">
+      </a>
+    </div>
+    </mat-card>
+  </div> -->
+</div>
+

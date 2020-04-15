@@ -1,0 +1,234 @@
+<div mat-dialog-content id="userCreatePrivi">
+  <div style="position: relative;">
+    <h3 id="h2">Search Branch</h3>
+    <i class="fa fa-times fa-2x" aria-hidden="true" (click)="closeDialog()"></i>
+  </div>
+  <hr id="popup-hr">
+
+  <div class="row row-margin" style="max-width: 50.0rem;">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12" style="margin-bottom: 1.0rem; padding: 0;">
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xl-3 margin-row">
+        <h5 class="searchby">Search&nbsp;By</h5>
+      </div>
+      <div class="col-lg-9 col-md-9 col-sm-9 col-xl-9 margin-row">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xl-4 margin-row">
+          <ng-select id="ngselect"  [clearable]="false" [searchable]="false" appendTo="body" class="advance-search"
+            name="search" style="width: 100%;" [(ngModel)]="model.search" (change)="advanceDefaultBranchArea()">
+             <ng-option *ngFor="let list of advanceSearchList" [value]=list.value>{{list.value}}</ng-option>
+          </ng-select>
+        </div>
+
+        <div *ngIf="model.search == 'NAME'" class="col-lg-8 col-md-8 col-sm-8 col-xl-8 margin-row" style="padding-right: 0;">
+          <input minlength="3" type="text" style="height: 2.7rem; width: 95%;"  required class="form-control"
+          placeholder="Search.." name="searchbyname" (keyup.enter)="advanceDefaultBranchName(model.searchbyname)" #searchbyname="ngModel" [(ngModel)]="model.searchbyname">
+         <i class="fa fa-search" (click)="advanceDefaultBranchName(model.searchbyname)" id="defualtBranchSearch1" style="cursor: pointer;"></i>
+             <!-- validation -->
+             <div *ngIf="searchbyname.invalid && (searchbyname.dirty || searchbyname.touched)">
+                 <div *ngIf="searchbyname.errors.minlength || searchbyname.errors.maxlength"  class="error">
+                   Please enter 3 character
+                 </div>
+               </div>
+               <!-- validation -->
+      </div>
+
+      <div *ngIf="model.search == 'AREA'" class="col-lg-8 col-md-8 col-sm-8 col-xl-8 margin-row">
+      <ng-select   [clearable]="false" [searchable]="false" appendTo="body"
+        name="areaId" [(ngModel)]="model.areaId"  style="height: 2.7rem; width: 90%;" (change)="advanceDefaultBranchAreaById()">
+        <ng-option *ngFor="let areaName of areaDataByName.responseData | filterBy: object" [value]="areaName">{{ areaName.branchCode }}</ng-option>
+     </ng-select>
+   </div>
+   <div *ngIf="model.search == 'REGION'" class="col-lg-8 col-md-8 col-sm-8 col-xl-8 margin-row">
+    <ng-select   [clearable]="false" [searchable]="false" appendTo="body"
+    name="searchByRegion" [(ngModel)]="model.searchByRegion"  style="height: 2.7rem; width: 95%;" (change)="advanceDefaultBranchRegionById()">
+      <ng-option *ngFor="let areaName of areaDataByName.responseData | filterBy: object" [value]="areaName">{{ areaName.branchCode }}</ng-option>
+    </ng-select>
+  </div>
+
+   <div *ngIf="model.search == 'TYPE'" class="col-lg-8 col-md-8 col-sm-8 col-xl-8 margin-row">
+    <ng-select [clearable]="false" [searchable]="false" appendTo="body"
+     name="searchByType" [(ngModel)]="model.searchByType" style="height: 2.7rem; width: 95%;" (change)="advanceDefaultBranchTypeById()">
+      <ng-option *ngFor="let areaName of areaDataByName.responseData | filterBy: object" [value]="areaName">{{ areaName }}</ng-option>
+    </ng-select
+    >
+</div>
+
+<div *ngIf="model.search == 'PINCODE'" class="col-lg-8 col-md-8 col-sm-8 col-xl-8 margin-row">
+  <input *ngIf="advancepincode==false" (keyup.enter)="advanceDefaultBranchPincode()" #searchbypincode="ngModel" required minlength="3"
+         type="text" style="height: 2.7rem; width: 95%;"  class="form-control" placeholder="244001" name="searchbypincode" [(ngModel)]="model.searchbypincode">
+  <i class="fa fa-search" *ngIf="advancepincode==false" id="defualtBranchSearch1" (click)="advanceDefaultBranchPincode()"></i>
+  <!-- validation -->
+  <!-- <div *ngIf="searchbypincode.invalid && (searchbypincode.dirty || searchbypincode.touched)" class="error">
+     <div *ngIf="searchbypincode.errors.minlength">Please enter 3 Number</div>
+   </div> -->
+  <!-- validation -->
+  <ng-select [clearable]="false" [searchable]="false" appendTo="body"
+             *ngIf="advancepincode==true" name="apincode" [(ngModel)]="model.apincode" style="height: 2.7rem; width: 95%;" (change)="advanceDefaultBranchPincodeByPincode()">
+    <ng-option></ng-option>
+    <ng-option *ngFor="let searchpincode of pinCodeList.responseData"  [value]=searchpincode>{{searchpincode.pincode}}</ng-option>
+  </ng-select>
+</div>
+
+    </div>
+  </div>
+</div>
+<!-- <div class="example-button-row text-center" style="margin-top:20px" >
+    <button class="btn1" style="text-align: center" mat-dialog-close mat-raised-button color="primary"(click)="filterEntity()">Submit</button>
+</div>  -->
+  </div>
+  <!-- panal -->
+  <section *ngIf="tabledataLength > 0 && model.search != 'NAME'" style="max-width: 103rem; max-height: 42rem;">
+    <form name="form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
+    <div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12">
+        <div class="row">
+          <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2 label2">Search Branch</div>
+          <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2 paddingleft">
+            <input class="form-control select" (keyup)="branchDataFilter($event.target.value)"  id="advance_search_input_branch"  placeholder="search">
+          </div>
+          <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2 label1">Effective Date</div>
+          <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2 paddingleft paddingTop5rem">
+            <mat-form-field appearance="outline" id="datepick" id="calender" style="width: 100%;">
+            <input id="datepickerholder" matInput [(ngModel)]="IsEffDate"  #IsEff="ngModel" name="IsEffDate"
+                   (dateChange)="EffectiveDateEvent('change', $event)" [max]='IsExpdateForvalidation'
+                   [min]='minDateEffe' [matDatepicker]="effectivedate" placeholder="DD/MM/YY">
+             <mat-datepicker #effectivedate></mat-datepicker>
+             <mat-datepicker-toggle matSuffix [for]="effectivedate"></mat-datepicker-toggle>
+           </mat-form-field>
+            <div *ngIf="!IsEff.invalid"></div>
+            <div *ngIf="IsEff.invalid" style="color:red">Please Enter valid Effective Date.</div>
+          </div>
+          <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2 label1 paddingTop5rem">Expiry Date</div>
+          <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2 paddingleft">
+            <mat-form-field appearance="outline" id="datepick"  id="calender" style="width: 100%;">
+            <input id="datepickerholder" matInput [(ngModel)]="IsExpdate" #IsExp="ngModel"
+                   (dateChange)="ExpiryDateEvent('change', $event)" [max]='expiryDateMaxValidation'  name="IsExpdate" [min]='IsEffDateForvalidation' [matDatepicker]="expiry" placeholder="DD/MM/YY">
+              <mat-datepicker #expiry></mat-datepicker>
+              <mat-datepicker-toggle matSuffix [for]="expiry"></mat-datepicker-toggle>
+            </mat-form-field>
+            <div *ngIf="!IsEff.invalid"></div>
+            <div *ngIf="IsExp.invalid" style="color:red">Date should be greater then effective date</div>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 12px;">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 ">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 bar width zonalheadingbar">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xl-6 margin-row" style="width: 0;">
+                <mat-checkbox [(ngModel)]="checked" name = "checked" (change)="selectAll($event)" [value]="tableData"></mat-checkbox></div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xl-6 margin-row" style="margin-left: 22px;">BRANCH&nbsp;CODE</div>
+          </div>
+
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 zonalheadingbar width">BRANCH&nbsp;NAME</div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 zonalheadingbar width">ADDRESS</div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 zonalheadingbar width">REGION</div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 zonalheadingbar width">TYPE</div>
+            <!-- <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 zonalheadingbar">STATUS</div> -->
+        </div>
+        </div>
+        <div style="width: 100rem; height: 13rem ; overflow-y: scroll; overflow-x:hidden">
+        <div class="row" *ngFor="let branch of tableData">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 ">
+              <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 bar width ">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xl-6 margin-row" style="width: 0;">
+                  <!-- <input (click)="filterDataByAreaList(branch)"type="radio"> -->
+                  <mat-checkbox style="margin-left:12%;" (change)="filterDataByAreaList($event,branch)"  name="branchChecked" [(ngModel)]="branch.checked"></mat-checkbox>
+                </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xl-6 margin-row" style="margin-left: 22px;">{{ branch.branchCode }}</div>
+            </div>
+              <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 bar width">{{branch.branchName }}</div>
+              <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 text-center bar width">
+                <i [matTooltip]="branch.address | uppercase"
+                matTooltipPosition="above" class="material-icons">room</i></div>
+              <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 bar width">{{branch.regionBranch}}</div>
+              <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 bar width">{{branch.branchType}}</div>
+              <!-- <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 ">{{branch.status}}</div> -->
+          </div>
+      </div>
+        </div >
+      </div>
+
+      <div class="example-button-row text-center" style="margin-bottom: 3%; ">
+          <button  id="branchSubmit" class="btn1" style="text-align: center; margin-bottom: 2%;margin-top:2%;" mat-raised-button color="primary" (click)="allocateAreaData()">SUBMIT</button>
+        </div>
+    </div>
+    </form>
+    </section>
+
+ <section  *ngIf="tabledataLength > 0 && model.search == 'NAME'" style="max-width: 103rem; max-height: 42rem;">
+   <form name="form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
+   <div>
+     <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12">
+       <div class="row">
+         <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2 label2"><h4 class="searchby">Search Branch</h4></div>
+         <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2 paddingleft">
+           <input class="form-control select" (keyup)="branchDataFilter($event.target.value)"  id="advance_search_input_branch"  placeholder="search">
+         </div>
+         <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2 label1">Effective Date</div>
+         <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2 paddingleft">
+           <mat-form-field appearance="outline" id="datepick" style="width: 100%;">
+             <input id="datepickerholder" matInput [(ngModel)]="IsEffDate" (dateChange)="EffectiveDateEvent('change', $event)"
+                    [max]='IsExpdateForvalidation' [min]='minDateEffe'  #IsEff = "ngModel" name="IsEffDate"
+                    [matDatepicker]="effectivedate" placeholder="DD/MM/YY">
+             <mat-datepicker #effectivedate></mat-datepicker>
+             <mat-datepicker-toggle matSuffix [for]="effectivedate"></mat-datepicker-toggle>
+           </mat-form-field>
+           <div *ngIf="IsEff.invalid" style="color:red">Please Enter valid Effective Date.</div>
+         </div>
+         <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2 label1">Expiry Date</div>
+         <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2 paddingleft">
+           <mat-form-field appearance="outline" id="datepick" style="width: 100%;">
+             <input id="datepickerholder" matInput [(ngModel)]="IsExpdate"   name="IsExpdate"  #IsExp = "ngModel"
+                    (dateChange)="ExpiryDateEvent('change', $event)" [max]='' [min]='IsEffDateForvalidation' [matDatepicker]="expiry" placeholder="DD/MM/YY">
+             <mat-datepicker #expiry></mat-datepicker>
+             <mat-datepicker-toggle matSuffix [for]="expiry"></mat-datepicker-toggle>
+           </mat-form-field>
+           <div *ngIf="!IsExp.invalid"></div>
+           <div *ngIf="IsExp.invalid" style="color:red">Date should be greater then effective date</div>
+         </div>
+       </div>
+       <div class="row" style="margin-top: 12px;">
+         <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 ">
+           <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 bar width zonalheadingbar">
+             <div class="col-lg-6 col-md-6 col-sm-6 col-xl-6 margin-row" style="width: 0;">
+               <mat-checkbox [(ngModel)]="checked"  name="checked" (change)="selectAll($event)" [value]="tableData"></mat-checkbox></div>
+             <div class="col-lg-6 col-md-6 col-sm-6 col-xl-6 margin-row" style="margin-left: 22px;">BRANCH&nbsp;CODE</div>
+           </div>
+
+           <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 zonalheadingbar width">BRANCH&nbsp;NAME</div>
+           <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 zonalheadingbar width">ADDRESS</div>
+           <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 zonalheadingbar width">REGION</div>
+           <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 zonalheadingbar width">TYPE</div>
+           <!-- <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 zonalheadingbar">STATUS</div> -->
+         </div>
+       </div>
+       <div style="width: 100rem; height: 13rem ; overflow-y: scroll; overflow-x:hidden">
+       <div class="row" *ngFor="let branch of tableData">
+         <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 displayflex">
+           <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 displayflex bar width ">
+             <div class="col-lg-6 col-md-6 col-sm-6 col-xl-6 margin-row" style="width: 0;">
+               <!-- <input (click)="filterDataByAreaList(branch)"type="radio"> -->
+               <mat-checkbox (change)="filterDataByAreaList($event,branch)"  name="branchChecked" [(ngModel)]="branch.checked"></mat-checkbox>
+             </div>
+             <div class="col-lg-6 col-md-6 col-sm-6 col-xl-6 margin-row" style="margin-left: 22px;">{{ branch.branchCode }}</div>
+           </div>
+           <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 displayflex bar width">{{branch.branchName }}</div>
+           <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 displayflex text-center bar width">
+             <i [matTooltip]="branch.address | uppercase"
+                matTooltipPosition="above" class="material-icons">room</i></div>
+           <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 displayflex bar width">{{branch.regionBranch}}</div>
+           <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 displayflex bar width">{{branch.branchType}}</div>
+           <!-- <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 ">{{branch.status}}</div> -->
+         </div>
+       </div>
+       </div>
+     </div>
+
+     <div class="example-button-row text-center" style="margin-bottom: 3%;">
+       <button  id="branchSubmit" class="btn1" style="text-align: center; margin-top:2%;" mat-raised-button color="primary"  [disabled]=" !f.form.valid "  (click)="allocateAreaData()">SUBMIT</button>
+      <!-- <span style="color:red" *ngIf="!flgSubmitBtn">Invalid date range.</span> -->
+     </div>
+   </div>
+   </form>
+ </section>
+    <ngx-spinner id="spinner" size="large" type="ball-spin-clockwise"></ngx-spinner>
+
+

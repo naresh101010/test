@@ -1,0 +1,265 @@
+{
+  "assignBranch": [
+    {
+      "bkngBranchId": 0,
+      "collBranchId": 0,
+      "excludeBillingDt": "2019-11-02T09:55:57.126Z",
+      "excludeBillingFlag": 0,
+      "id": 0,
+      "ratecardId": 0,
+      "submsnBranchId": 0
+    }
+  ],
+  "message": "string",
+  "refernceList": {
+    "baseFuelIndexList": [
+      {
+        "id": 0,
+        "lookupVal": "string"
+      }
+    ],
+    "billingByList": [
+      {
+        "id": 0,
+        "lookupVal": "string"
+      }
+    ],
+    "billingCycleList": [
+      {
+        "id": 0,
+        "lookupVal": "string"
+      }
+    ],
+    "billingLevelList": [
+      {
+        "id": 0,
+        "lookupVal": "string"
+      }
+    ],
+    "billingSubLevelList": [
+      {
+        "id": 0,
+        "lookupVal": "string"
+      }
+    ],
+    "billingSubTypeList": [
+      {
+        "id": 0,
+        "lookupVal": "string"
+      }
+    ],
+    "bookingBranchList": [
+      {}
+    ],
+    "businessTypeList": [
+      {
+        "id": 0,
+        "lookupVal": "string"
+      }
+    ],
+    "chargeByList": [
+      {
+        "id": 0,
+        "lookupVal": "string"
+      }
+    ],
+    "collectionBranchList": [
+      {}
+    ],
+    "contractTypeList": [
+      {
+        "id": 0,
+        "lookupVal": "string"
+      }
+    ],
+    "fuelTypeList": [
+      {
+        "id": 0,
+        "lookupVal": "string"
+      }
+    ],
+    "incrementBasedOnList": [
+      {
+        "id": 0,
+        "lookupVal": "string"
+      }
+    ],
+    "incrementModeList": [
+      {
+        "id": 0,
+        "lookupVal": "string"
+      }
+    ],
+    "incrementTypeList": [
+      {
+        "id": 0,
+        "lookupVal": "string"
+      }
+    ],
+    "msaCneeList": [
+      {
+        "addrBook": {
+          "addr1": "string",
+          "addr2": "string",
+          "addr3": "string",
+          "id": 0,
+          "latitude": 0,
+          "longitude": 0,
+          "pincodeId": 0
+        },
+        "addrBookId": 0,
+        "address": "string",
+        "city": "string",
+        "email": "string",
+        "gstinNum": "string",
+        "id": 0,
+        "lkpConsigntypeId": "string",
+        "mob": "string",
+        "msaCustId": 0,
+        "name": "string",
+        "panNum": "string",
+        "pincode": "string",
+        "tanNum": "string"
+      }
+    ],
+    "msaCnorList": [
+      {
+        "addrBook": {
+          "addr1": "string",
+          "addr2": "string",
+          "addr3": "string",
+          "id": 0,
+          "latitude": 0,
+          "longitude": 0,
+          "pincodeId": 0
+        },
+        "addrBookId": 0,
+        "address": "string",
+        "city": "string",
+        "email": "string",
+        "gstinNum": "string",
+        "id": 0,
+        "lkpConsigntypeId": "string",
+        "mob": "string",
+        "msaCustId": 0,
+        "name": "string",
+        "panNum": "string",
+        "pincode": "string",
+        "tanNum": "string"
+      }
+    ],
+    "notepadAttributesList": [
+      {
+        "attributeIdentifier": "string",
+        "attributeTypeId": 0,
+        "attributeValue": "string",
+        "moduleEntity": "string",
+        "moduleEntityId": 0,
+        "moduleGroup": "string",
+        "moduleGroupId": 0,
+        "notepadId": 0,
+        "notepadName": "string",
+        "notepadOrder": 0
+      }
+    ],
+    "opporTypeList": [
+      {
+        "id": 0,
+        "lookupVal": "string"
+      }
+    ],
+    "packagingTypeList": [
+      {
+        "id": 0,
+        "lookupVal": "string"
+      }
+    ],
+    "paymentTermList": [
+      {
+        "id": 0,
+        "lookupVal": "string"
+      }
+    ],
+    "productCategoryList": [
+      {
+        "id": 0,
+        "lookupVal": "string"
+      }
+    ],
+    "rateGroupList": [
+      {
+        "id": 0,
+        "lookupVal": "string"
+      }
+    ],
+    "safexPincodeGroupList": [
+      {
+        "id": 0,
+        "lookupVal": "string"
+      }
+    ],
+    "safexTypeList": [
+      {
+        "id": 0,
+        "lookupVal": "string"
+      }
+    ],
+    "securityTypeList": [
+      {
+        "id": 0,
+        "lookupVal": "string"
+      }
+    ],
+    "serviceLineList": [
+      {
+        "id": 0,
+        "lookupVal": "string"
+      }
+    ],
+    "serviceOfferingList": [
+      {
+        "id": 0,
+        "lookupVal": "Sarvjyoti"
+      }
+    ],
+    "slabProtectTypeList": [
+      {
+        "id": 0,
+        "lookupVal": "string"
+      }
+    ],
+    "stateGroupList": [
+      {
+        "id": 0,
+        "lookupVal": "string"
+      }
+    ],
+    "statusList": [
+      {
+        "id": 0,
+        "lookupVal": "string"
+      }
+    ],
+    "submissionBranchList": [
+      {}
+    ],
+    "todBasedOnList": [
+      {
+        "id": 0,
+        "lookupVal": "string"
+      }
+    ],
+    "vmiTypeList": [
+      {
+        "id": 0,
+        "lookupVal": "string"
+      }
+    ],
+    "MatrixList": [
+      {
+        "id": 0,
+        "name": "zone matrix"
+      }
+    ]
+  }
+}

@@ -1,0 +1,6 @@
+h5.danger.noPermission {
+    color: red;
+    text-align: center;
+    margin-top: 20px;
+    z-index: 9999999999;
+}

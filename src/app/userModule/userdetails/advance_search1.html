@@ -1,0 +1,125 @@
+<div mat-dialog-content id="userDetailDefault">
+  <div style="position: relative;">
+    <h3 id="h2">Search Branch</h3>
+    <i class="fa fa-times fa-2x" aria-hidden="true" (click)="closeDialog()"></i>
+  </div>
+
+  <hr id="popup-hr">
+
+  <div class="row row-margin"  style="width: 50.0rem;">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 margin-row" style="margin-bottom: 1.0rem;">
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xl-3 margin-row">
+        <h5 class="searchby" >Search&nbsp;By</h5>
+      </div>
+      <div class="col-lg-9 col-md-9 col-sm-9 col-xl-9 margin-row">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xl-4 margin-row">
+          <ng-select id="ngselect" [clearable]="false" [searchable]="false" appendTo="body" class="advance-search"
+                      name="search" style="width: 100%;" [(ngModel)]="model.search" (change)="advanceDefaultBranchArea()">
+            <ng-option *ngFor="let list of advanceSearchList" [value]=list.value>{{list.value}}</ng-option>
+          </ng-select>
+        </div>
+
+        <div *ngIf="model.search == 'NAME'" class="col-lg-8 col-md-8 col-sm-8 col-xl-8 margin-row">
+          <input minlength="3" type="text" style="height: 2.7rem; width: 95%;" (keyup.enter)="advanceDefaultBranchName(model.searchbyname)" class="form-control" required
+                 placeholder="Search.." name="searchbyname" #searchbyname="ngModel" [(ngModel)]="model.searchbyname">
+          <i class="fa fa-search" (click)="advanceDefaultBranchName(model.searchbyname)" id="defualtBranchSearch1" style="cursor: pointer;"></i>
+          <!-- validation -->
+          <div *ngIf="searchbyname.invalid && (searchbyname.dirty || searchbyname.touched)">
+            <div *ngIf="searchbyname.errors.minlength || searchbyname.errors.maxlength"  class="error">
+              Please enter 3 character
+            </div>
+          </div>
+          <!-- validation -->
+        </div>
+
+        <div *ngIf="model.search == 'AREA'" class="col-lg-8 col-md-8 col-sm-8 col-xl-8 margin-row">
+          <ng-select   [clearable]="false" [searchable]="false" appendTo="body"
+                     name="searchByArea" [(ngModel)]="model.searchByArea" style="height: 2.7rem; width: 95%;" (change)="advanceDefaultBranchAreaById()">
+            <ng-option *ngFor="let areaName of areaDataByName.responseData | filterBy: object" [value]=areaName>{{ areaName.branchCode }}</ng-option>
+          </ng-select>
+        </div>
+
+        <div *ngIf="model.search == 'REGION'" class="col-lg-8 col-md-8 col-sm-8 col-xl-8 margin-row">
+          <ng-select   [clearable]="false" [searchable]="false" appendTo="body"
+                     name="searchByRegion" [(ngModel)]="model.searchByRegion"  style="height: 2.7rem; width: 95%;" (change)="advanceDefaultBranchRegionById()">
+            <ng-option *ngFor="let areaName of areaDataByName.responseData | filterBy: object" [value]=areaName>{{ areaName.branchCode }}</ng-option>
+          </ng-select>
+        </div>
+
+        <div *ngIf="model.search == 'TYPE'" class="col-lg-8 col-md-8 col-sm-8 col-xl-8 margin-row">
+          <ng-select   [clearable]="false" [searchable]="false" appendTo="body"
+                     name="searchByType" [(ngModel)]="model.searchByType" style="height: 2.7rem; width: 95%;" (change)="advanceDefaultBranchTypeById()">
+            <ng-option *ngFor="let areaName of areaDataByName.responseData | filterBy: object" [value]=areaName>{{ areaName }}</ng-option>
+          </ng-select  >
+        </div>
+
+        <div *ngIf="model.search == 'PINCODE'" class="col-lg-8 col-md-8 col-sm-8 col-xl-8 margin-row">
+          <input *ngIf="advancepincode==false" (keyup.enter)="advanceDefaultBranchPincode()" #searchbypincode="ngModel" required minlength="3"
+                 type="text" style="height: 2.7rem; width: 95%;"  class="form-control" placeholder="244001" name="searchbypincode" [(ngModel)]="model.searchbypincode">
+          <i class="fa fa-search" *ngIf="advancepincode==false" id="defualtBranchSearch1" (click)="advanceDefaultBranchPincode()" ></i>
+          <!-- validation -->
+          <!-- <div *ngIf="searchbypincode.invalid && (searchbypincode.dirty || searchbypincode.touched)" class="error">
+             <div *ngIf="searchbypincode.errors.minlength">Please enter 3 Number</div>
+           </div> -->
+          <!-- validation -->
+          <ng-select  [clearable]="false" [searchable]="false" appendTo="body"
+                     *ngIf="advancepincode==true" name="apincode" [(ngModel)]="model.apincode" style="height: 2.7rem; width: 90%;" (change)="advanceDefaultBranchPincodeByPincode()">
+            <ng-option *ngFor="let searchpincode of pinCodeList.responseData"  [value]=searchpincode>{{searchpincode.pincode}}</ng-option>
+          </ng-select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- panal -->
+<section *ngIf="tabledataLength > 0"  style="max-width: 100rem; max-height: 40rem;">
+  <div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 paddingzero">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xl-6 ">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xl-6 margin-row"><h4 class="searchby">Search Branch</h4></div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xl-6 margin-row">
+          <input class="form-control select" (keyup)="branchDataFilter($event.target.value)"  id="advance_search_input_branch"  placeholder="search">
+        </div>
+      </div>
+      <div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 ">
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 zonalheadingbar">BRANCH&nbsp;CODE</div>
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 zonalheadingbar">BRANCH&nbsp;NAME</div>
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 zonalheadingbar">ADDRESS</div>
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 zonalheadingbar">REGION</div>
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 zonalheadingbar">TYPE</div>
+          <!-- <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 zonalheadingbar">STATUS</div> -->
+        </div>
+      </div>
+      <div style="width: 98rem; height: 13rem ; overflow-y: scroll;">
+      <div *ngFor="let branch of tableData.responseData">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 displayflex">
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 displayflex bar">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xl-6 margin-row" style="width: 0;">
+              <!--  <mat-radio-button class="advancesearchradio" (click)="filterDataByAreaList(branch)" name="chk" [checked] = "checkedFinalId == branch.branchId ? 'checked' : ''"></mat-radio-button> -->
+               <input (click)="filterDataByAreaList(branch)" type="radio" name="chk" [checked] = "checkedFinalId == branch.branchId ? 'checked' : ''">
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xl-6 margin-row" style="margin-left: 2.2rem;">{{ branch.branchCode }}</div>
+          </div>
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 displayflex bar">{{branch.branchName }}</div>
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 displayflex text-center bar">
+            <i [matTooltip]="branch.address | uppercase"
+               matTooltipPosition="above" class="material-icons">room</i></div>
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 displayflex bar">{{branch.regionBranch}}</div>
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 displayflex bar">{{branch.branchType}}</div>
+          <!-- <div class="col-lg-2 col-md-2 col-sm-2 col-xl-2 ">{{branch.status}}</div> -->
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <div class="example-button-row text-center" style="margin-bottom: 3%;">
+      <button  id= "branchSave" class="btn1" style="text-align: center; margin-top:2%;" mat-raised-button color="primary" (click)="allocateAreaData()">SAVE</button>
+    </div>
+  </div>
+
+</section>
+<ngx-spinner id="spinner" size="large" type="ball-spin-clockwise">
+
+</ngx-spinner>

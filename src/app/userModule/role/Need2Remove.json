@@ -1,0 +1,36 @@
+    [{
+    "objectPermissionList": [
+      {
+        "attributeExclutionList": [
+                  {
+                      "isAddorUpdate": "add",
+                      "objectattribute_id": 8,
+                      "description": ""
+                  }
+        ],
+      "channelId": 33,
+      "objectId": 3,
+      "permissionId": 1
+      },
+      {
+        "attributeExclutionList": [
+                  {
+                      "isAddorUpdate": "add",                  
+                      "objectattribute_id": 10,
+                      "description": ""
+                  },
+                  {
+                      "isAddorUpdate": "add",                    
+                      "objectattribute_id": 11,
+                      "description": ""
+                  }
+        ],
+        "channelId": 34,
+        "objectId": 4,
+        "permissionId": 2
+      }
+    ],
+    "roleDto": {
+      "roleId": 2
+    }
+  }]

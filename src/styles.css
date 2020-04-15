@@ -1,0 +1,144 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~ngx-toastr/toastr.css';  
+/* @import 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css';   */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~@ng-select/ng-select/themes/default.theme.css";
+/* @import '~@angular/material/prebuilt-themes/deeppurple-amber.css'; */
+
+html{font-size: 45%;}
+
+body {font-size: 1.4rem; overflow-x: hidden; overflow-y: hidden; box-sizing: border-box;font-family: 'Open Sans', sans-serif !important; line-height: 1.8; }
+::-webkit-scrollbar {width: .7rem;}
+::-webkit-scrollbar-track {background: #EBEBF2;}
+::-webkit-scrollbar-thumb {background: #6A6868; border-radius: 2.0rem;}
+::-webkit-scrollbar-thumb:hover {background: #585757;border-radius: 2.0rem;}
+
+#bell{position: relative;right: 8.5rem; top: .3rem; color: #6A6868;}
+#profile{position: relative; right: 101%; letter-spacing: 0; color: #1A1A1A;}
+#profileimg{position: relative;  right: 1%;}
+#titleheading{ width: 110%; margin-top: -12%; height: 5.1rem;}
+#heading{letter-spacing: 0; color: #1A1A1A;position: absolute;top: -5.5rem;left: .2rem;}
+#usersearchicon{position: relative; top:5.5rem; font-size: 3.5rem; color: #6A6868;}
+#plusicon{color: #27AE60;position: absolute;right: 1rem;top: .6rem;z-index: 10;font-size: 3.5rem;}
+#userinput{font-size: 1.7rem; position: relative; top: 2.6rem; left: 3.9rem; font-weight: bold;}
+.RoleMH{font-size: 1.7rem; font-weight: bold; color: #1A1A1A; }
+#rolesearch{position: relative; top:2.5rem; font-size: 3.5rem; color: #585757;}
+.green-border{background: #27AE60; border:.05rem solid #27AE60; margin-top: -.6rem; margin-bottom: 0rem;}
+.green-border-heading{background: #27AE60; border:.05rem solid #27AE60;  margin-bottom: 1.0rem; margin-top: .5rem;}
+.fa-search{position: absolute;font-size: 2.0rem;opacity: .6;top: 0rem;}
+/* .mat-form-field-underline, .mat-form-field-underline.mat-focused{background-color: #FAFAFA; border-color: #fff;} */
+hr{margin-top: 0;}
+/* updated new */
+.search {position: relative; color: #1a1a1a; font-size: 1.4rem; padding-top:.7rem; width: 90%; }
+.search input { width: 100%; height: 4.5rem; border:0px; color:#1a1a1a;}
+.breadcrumb {color:#1a1a1a; font-size:1.4rem; font-weight:normal; text-align:left; position: absolute;top: 0%; font-family:'Open Sans', sans-serif; background: transparent;}
+.breadcrumb .fa-caret-right {color:#1a1a1a; padding:.5rem;}
+.breadcrumb1{font-family: 'Open Sans', sans-serif;color:#1a1a1a; font-size:1.4rem; font-weight:normal; position: absolute;top: 0%; left: 12%; z-index: 2;}
+.breadcrumb1 .fa-caret-right {color:#1a1a1a; padding:.5rem;}
+.breadcrumb2{font-family: 'Open Sans', sans-serif; color: #1a1a1a; font-size: 1.4rem;font-weight: normal; position: absolute;top: 1.3rem; left: 8rem; z-index: 2;}
+.breadcrumb2 .fa-caret-right {color:#1a1a1a; padding:.5rem;}
+/* User Management */
+#RoleS{color: #27AE60; position: absolute; font-size: 4.0rem; right: 4%; top: 12%;}
+input{text-transform: uppercase;}
+input:focus {outline: none; border-color: #27AE60; box-shadow: 0 0 0 0;}
+input:hover{outline: none; border-color: #27AE60; box-shadow: 0 0 0 0;}
+.form-control{width: 100%;box-shadow: 0px .1rem .2rem #00000029;border: .1rem solid #6A6868; border-radius: .2rem;height: 2.7rem;
+        font-size: 1.3rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+.form-control:focus{border: .2rem solid #27AE60;  box-shadow: none; -webkit-box-shadow: none;}
+mat-panel-title{font-weight: bold;}
+.error{font:1.0rem; margin-left: 1.5rem; color: rgb(163, 63, 63); height: 0px; margin:0px; padding: 0px;}
+a{ color:#27AE60; cursor: pointer;}
+/* view permission */
+.sectionOpen{  width: 100%;  height: auto;  }
+/* View Permission */
+.viewpermission{  width: 100%;  height: 0%;  background:#EBEBF2;  display: flex;}
+.viewpermi{  width: 25%;  height: 3.5rem;  border-bottom: .1rem solid #EBEBF2;  display: flex;  justify-content: center;  align-items: center;}
+.viewpermi1{  width: 25%;  height: 3.5rem;  display: flex;  justify-content: center;  align-items: center;  }
+.viewpermission1{  width: 100%;  height: 3.5rem;  display: flex;}
+.scrollbar{ overflow-y:scroll;  border-bottom: .1rem solid #EBEBF2;   font-size: 1.4rem;}
+.PermissionMapping{ position: relative;  left: .3rem;  top: .8rem;  font-size: 1.4rem;  font-weight: bold;}
+.userheading{position: relative; font-size: 1.5rem; left: 0px; top: 1.7rem;}
+/* 18NOv2017 */
+
+#lending{height: fit-content; max-width: 100%; box-shadow: 0.05rem  0.05rem 0.05rem #ccc;  top:6.5rem; margin-bottom: 11rem!important;}
+#lending2{margin-top: 6.5rem;box-shadow: 0.05rem  0.05rem 0.05rem #ccc; width: 100%; margin-bottom: 11rem!important;}
+#lending3{margin-top: 2.0rem;box-shadow: 0.05rem  0.05rem 0.05rem #ccc; width: 100%; margin-bottom: 11rem!important;}
+
+/* 20 October */
+::ng-deep select option:hover{background: #27AE60}
+::ng-deep .mat-dialog-container {border-radius: 6.0rem;}
+/* for mat-expension-border */
+#box-shadow{box-shadow: none; padding-top: 0; padding-bottom: 0; }
+::ng-deep .mat-expansion-panel-header-title{border-bottom: .1rem solid #1a1a1a;}
+::ng-deep #box-shadow{box-shadow: none; padding-top: 0; padding-bottom: 0; }
+.mat-expansion-panel-header { padding: 0px 1.2rem;}
+h2{font-family: 'Open Sans', sans-serif;}
+mat-card{box-shadow: none !important; font-family: 'Open Sans', sans-serif !important;}
+.mat-card{box-shadow: none !important; font-family: 'Open Sans', sans-serif !important;}
+.control-label{padding-left: 0px !important;}
+.permission{position: relative; top: 3.8rem; left: 1.6rem; font-size: 1.6rem;}
+
+/* Navigation page */
+
+/* End of Navigation Page */
+/* dashboard */
+.dashboard-heading{position: absolute !important; left: 8rem !important; top: 1.7rem !important;font-size: 2.4rem !important; bottom: 1.6rem;background: transparent;}
+#dashboard-search{top: 2.2rem !important;}
+.banner-input1{border: none; width: 70%; margin-left: .6rem; position: relative; width: 93%;left: 2.4rem;}
+.example-container {overflow: auto;overflow-wrap: break-word; box-shadow: none !important;}  
+#routerlink{font-size: 1.7rem;padding-bottom: .3rem;color: BLACK;font-weight: bold; cursor: pointer; }
+#dashboard-side-search{position: static; font-size: 2.0rem;opacity: 0.4;color: #585757;}
+/* dashboard */
+/* Main-section */
+.page-section{margin-top: 1.8rem !important;width: 94% !important;margin-left: 3% !important;height: 100vh !important;}
+.input-label{height: 2.2rem; font-size: 1.6rem;}
+.page-header {font-size: 2.4rem;font-weight:normal;margin:2.0rem 0px 0px 0px;font-family: 'Open Sans', sans-serif;}
+
+/* end of section */
+
+/* Role table */
+::ng-deep tr.mat-header-row{height: 4.0rem !important;}
+th{background: #F1F1F1; font-size: 1.6rem !important; color: #1a1a1a !important; font-weight: bold !important;}
+.mat-dialog-table{max-height: 18.2rem; overflow: auto; overflow-wrap: break-word; margin-top: 1.0rem;}
+.overlay-heading{font-size: 1.8rem; font-weight: bold; height: 1.0rem;margin-top: 2.15rem;}
+/* end of table */
+/* Advance Search */
+.select{width: 100%; height: 2.7rem;padding-top:.1rem; border-radius: 0; font-size: 1.0rem; padding: 0;border-radius: .2rem;}
+.zonalheadingbar{background: #F1F1F1; height: 3.5rem; font-weight: bold; display: flex;  align-items: center; border-right: .1rem solid #fff;}
+
+/* Advance Search */
+
+/* Media Queries */
+/* Media Queries */
+
+
+
+
+
+
+
+.th-text{margin: 0 0 0 !important;}
+.th-text-view{cursor: pointer;margin: 0 0 0 !important;width: fit-content;}
+@media only screen and (max-width: 600px) {
+    .dashboard-first-container{padding-right: 2.0rem;padding-left: 2.0rem;}
+    .th-text{padding-left: 1.0rem;}    
+    /* .dashboard-heading{left: 4% !important;} */
+    .breadcrumb2{left: 8rem !important;}
+   }
+
+   /* .overlay {display: none;} */
+
+   .toast  .close {display: none; }
+   .mat-paginator-page-size {margin-right: .8rem;}
+   .mat-paginator-page-size-label { margin: 0px 2.1rem !important}
+   /* .overlay {display: none;} */
+
+
+   td.mat-calendar-body-cell {
+        /* height: 2px!important; */
+        font-size: 1.5rem;
+        /* background: red; */
+        line-height: 2rem;
+        padding: 1.8rem 0 !important;
+    }
+    

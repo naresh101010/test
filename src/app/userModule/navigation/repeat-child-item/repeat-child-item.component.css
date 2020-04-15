@@ -1,0 +1,22 @@
+a.child {
+  color: #fff;
+  font-size: 1.5rem;
+}
+
+a.child span {
+  line-height: 4rem;
+  padding-left: 2rem;
+  display: block;
+}
+
+a.child span:hover {
+  background: #119d4d;
+  transform: rotateY(4deg);
+}
+a:hover {
+  text-decoration: none;
+}
+
+a.child.active span {
+  background: #097437;
+}

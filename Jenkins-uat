@@ -1,0 +1,32 @@
+node {  
+  stage('SCM Checkout usermodule_ui'){  
+    git branch: 'master',credentialsId: 'jenkins-codecommit', url: 'https://git-codecommit.ap-south-1.amazonaws.com/v1/repos/usermodule_ui'  
+  } 
+ def commitSha = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
+    println("commitSha: ${commitSha}")
+    sh "sed -i 's/usermodule-ui:BUILDNUMBER/uat:usermodule_ui_${BUILD_NUMBER}_${commitSha}/' $WORKSPACE/k8s-config.yaml"
+    sh "sed -i 's/internal-a4442250f27aa11ea9bac0a3257c4306-879971059.ap-south-1.elb.amazonaws.com/internal-a8a015cdc5a0e11eaa17a0ab2c986ee8-367098082.ap-south-1.elb.amazonaws.com/' $WORKSPACE/src/assets/json/config.json" 
+    sh "sed -i 's/internal-af19f2c033c4111ea9bac0a3257c4306-911222744.ap-south-1.elb.amazonaws.com/internal-a7fac253f5a1111eaa17a0ab2c986ee8-1740155927.ap-south-1.elb.amazonaws.com/' $WORKSPACE/src/assets/json/config.json" 
+  stage('build source'){
+      sh 'cp package*.json ./src/app/'  
+      sh 'npm install'  
+      sh 'npm run build  --output-path=./dist'  
+  }
+  stage('build docker image'){  
+     sh label: '', script: "docker build -t 183454673550.dkr.ecr.ap-south-1.amazonaws.com/uat:usermodule_ui_${BUILD_NUMBER}_${commitSha} ."
+  }  
+  stage('push ECR_UAT'){  
+     withDockerRegistry(credentialsId: 'ecr:ap-south-1:Jenkins-ECR', url: 'https://183454673550.dkr.ecr.ap-south-1.amazonaws.com/uat') {  
+            sh "docker push 183454673550.dkr.ecr.ap-south-1.amazonaws.com/uat:usermodule_ui_${BUILD_NUMBER}_${commitSha}"  
+         }  
+    }
+     stage('uat'){   
+        sh '''  
+        export KUBECONFIG=/var/lib/jenkins/.kube/UAT_config 
+        ECR_PASSWORD=$(aws --profile ECR ecr get-login | awk '{print $6}')  
+        kubectl delete secret aws-ecr --ignore-not-found=true  
+        kubectl create secret docker-registry aws-ecr --docker-server="https://183454673550.dkr.ecr.ap-south-1.amazonaws.com" --docker-username="AWS" --docker-password="${ECR_PASSWORD}" 
+        kubectl apply -f $WORKSPACE/k8s-config.yaml 
+        '''  
+    }  
+}

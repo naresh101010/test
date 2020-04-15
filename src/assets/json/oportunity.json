@@ -1,0 +1,63 @@
+{
+    "opportunityData": {
+      "id": 36,
+      "msaCustId": 27,
+      "status": 0,
+      "lkpOpprType": "string",
+      "opprName": "string",
+      "sfdcOpprId": "string3"
+    },
+    "refernceList": {
+      "businessTypeList": [
+        {
+          "id": 19,
+          "lookupVal": "INBOUND"
+        },
+        {
+          "id": 20,
+          "lookupVal": "OUTBOUND"
+        },
+        {
+          "id": 21,
+          "lookupVal": "ANYWHERE TO ANYWHERE"
+        }
+      ],
+      "statusList": [
+        {
+          "id": 140,
+          "lookupVal": "ACTIVE"
+        },
+        {
+          "id": 141,
+          "lookupVal": "DRAFT"
+        },
+        {
+          "id": 142,
+          "lookupVal": "INACTIVE"
+        },
+        {
+          "id": 143,
+          "lookupVal": "ONHOLD"
+        },
+        {
+          "id": 144,
+          "lookupVal": "CLOSED"
+        }
+      ],
+      "opporTypeList": [],
+      "contractTypeList": [
+        {
+          "id": 47,
+          "lookupVal": "CREDIT"
+        },
+        {
+          "id": 48,
+          "lookupVal": "RETAIL"
+        },
+        {
+          "id": 49,
+          "lookupVal": "PRC"
+        }
+      ]
+    }
+  }

@@ -1,0 +1,65 @@
+http://localhost:9100/secure/v1/branches/branchtype/AREA
+
+
+{
+    "message": "Success",
+    "data": [
+      {
+        "branchCode": "ABO03",
+        "branchName": "ABOHAR-03",
+        "phone": "01123565379",
+        "mobile": "999999999",
+        "email": "agartalaJaipur@safexpress.com",
+        "isDefault": 0,
+        "address": "Jaipur",
+        "cutoffTime": 0,
+        "organisationId": 0,
+        "branchtypeId": 3,
+        "autogenWaybl": 1,
+        "branchRating": "top10",
+        "lagTime": 0,
+        "descr": "sds",
+        "status": 1,
+        "expiryDate": "2020-10-24T00:00:00.000+0000",
+        "effectiveDate": "2019-10-17T14:43:40.954+0000"
+      },
+      {
+        "branchCode": "BHO01",
+        "branchName": "BHOHAR-01",
+        "phone": "01123565379",
+        "mobile": "999999999",
+        "email": "agartalabhopal@safexpress.com",
+        "isDefault": 0,
+        "address": "Jaipur",
+        "cutoffTime": 0,
+        "organisationId": 0,
+        "branchtypeId": 3,
+        "autogenWaybl": 1,
+        "branchRating": "top10",
+        "lagTime": 0,
+        "descr": "sds",
+        "status": 1,
+        "expiryDate": "2020-10-24T00:00:00.000+0000",
+        "effectiveDate": "2019-10-30T14:43:40.954+0000"
+      },
+      {
+        "branchCode": "ABO01",
+        "branchName": "ABOHAR-01",
+        "phone": "01123565379",
+        "mobile": "999999999",
+        "email": "",
+        "isDefault": 0,
+        "address": "GURUGRAM",
+        "cutoffTime": 0,
+        "organisationId": 0,
+        "branchtypeId": 3,
+        "autogenWaybl": 1,
+        "branchRating": "top10",
+        "lagTime": 0,
+        "descr": "sds",
+        "status": 1,
+        "expiryDate": "2020-10-24T00:00:00.000+0000",
+        "effectiveDate": "2019-10-17T14:43:04.230+0000"
+      }
+    ]
+  }

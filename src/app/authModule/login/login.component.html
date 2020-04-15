@@ -1,0 +1,96 @@
+<div
+  style=" height: 100vh; background-image: url(../../../assets/images/login.jpg);background-size:cover; "
+>
+  <div
+    class="login-wrapper  animated  fadeIn"
+    fxLayout="row"
+    fxLayoutAlign="end center"
+    style="margin-right: 12%;"
+  >
+    <mat-card class="box ">
+      <mat-card-header>
+        <!-- <mat-card-title>Log in</mat-card-title> -->
+        <img src="../../../assets/images/logo.png" style="width: 18rem;" />
+      </mat-card-header>
+      <form class="example-form" autocomplete="off">
+        <mat-card-content>
+          <div class="form-group">
+            <mat-form-field id="loginFormFiled">
+              <input
+                autocomplete="true"
+                id="loginInput"
+                matInput
+                placeholder="Username"
+                name="username"
+                [(ngModel)]="holdCredential.username"
+                (focus)="runFocus()"
+              />
+            </mat-form-field>
+          </div>
+
+          <div class="form-group">
+            <mat-form-field id="loginFormFiled">
+              <input
+                autocomplete="true"
+                id="loginInput"
+                type="password"
+                matInput
+                placeholder="Password"
+                name="password"
+                (focus)="runFocus()"
+                [(ngModel)]="holdCredential.password"
+              />
+            </mat-form-field>
+          </div>
+        </mat-card-content>
+        <div class="flex-sb-m w-full p-t-3 p-b-32">
+          <div class="row">
+            <div class="col-lg-6">
+              <mat-checkbox
+                type="checkbox"
+                class="rememberMe"
+                name="rememberMe"
+                [(ngModel)]="rememberMe"
+              >
+                Remember me</mat-checkbox
+              >
+            </div>
+            <div class="col-lg-6 text-right">
+              <!-- <a href="#" style="color:#27ae61; font-size:14px; text-decoration:none;">
+              Forgot Password?
+            </a> -->
+            </div>
+          </div>
+        </div>
+        <div class="container-login100-form-btn" style="padding-top:20px;">
+          <div style="float:left; width:100%; border:0px solid red;">
+            <input
+              class="login-input"
+              (click)="loginUser()"
+              type="image"
+              src="../../../assets/images/login-btn.png"
+            />
+          </div>
+        </div>
+        <div
+          class="container-login100-form-btn"
+          style="padding-top:20px;"
+          *ngIf="this.credentials"
+        >
+          <span
+            style="position: absolute; right: 20px;bottom: 21px; color:red; font-size:14px; text-decoration:none;"
+          >
+            Invalid credentials.
+          </span>
+        </div>
+        <!-- <div class="container-login100-form-btn" style="padding-top:20px;">
+           <a href="#" style="color:#27ae61; font-size:14px; text-decoration:none;">
+          Trouble Logging in?
+            </a> 
+        </div> -->
+        <!-- <button mat-stroked-button color="accent" class="btn-block" (click)="loginUser()">Log in</button> -->
+      </form>
+    </mat-card>
+  </div>
+</div>
+<ngx-spinner id="spinner" size="large" type="ball-spin-clockwise"></ngx-spinner>

@@ -1,0 +1,175 @@
+{
+  "categoryId": 146,
+  "defaultBranch": {
+    "addOrRemoveOrUpdate": "add",
+    "branchCode": "ABO01",
+    "effectiveDate": "2019-12-06",
+    "expiryDate": "2020-12-06",
+    "isDefault": 1,
+    "status": 1
+  },
+  "email": "string",
+  "id": 0,
+  "isAdmin": 0,
+  "menuHierarchyId": 3,
+  "mobile": "string",
+  "name": "string",
+  "previlegeBranches": [
+    {
+      "addOrRemoveOrUpdate": "",
+      "branchCode": "ABO01",
+      "effectiveDate": "2019-12-06",
+      "expiryDate": "2020-12-06",
+      "isDefault": 1,
+      "status": 1
+    }
+  ],
+  "status": 1,
+  "userId": "TEST_USER_1012",
+  "userRoles": [
+    {
+      "addOrRemoveOrUpdate": "ADD",
+      "description": "",
+      "roleId": 1,
+      "roleName": "",
+      "status": 1
+    }
+  ]
+}
+
+
+
+<table class="table">
+<thead>
+  <tr>
+    <th>Role Name </th>
+    <th>Role Permission</th>
+    <th>Delete</th>
+  </tr>
+</thead>
+
+<tbody *ngFor="let role of userRoles;let j = index">
+  <tr>
+
+    <td>{{role.roleName}}</td>
+
+    <td>
+      <a style="color: #27AE60; cursor: pointer;" (click)= "getRoledetail(role.roleId)" data-toggle="collapse" data-target="#demo">View Permission</a>
+    </td>
+
+    <td> <button style="cursor: pointer;" mat-button color="warn" (click)="removeRoleBranchChanged(role.roleName,j)">
+      <mat-icon class="example-icon">delete</mat-icon>
+    </button></td>
+  </tr>
+</tbody>
+</table>
+
+
+<!-- Pannel -->
+<!--  -->
+<div class="container" style="width: 93%;"  >
+<section id="demo" class="sectionOpen collapse" *ngIf="webRoledetail.length>0" >
+<p class="PermissionMapping">Web Permission Mapping</p>
+   <section class="viewpermission" >
+      <div class="viewpermi1">Entity</div>
+      <div class="viewpermi1">Create</div>
+      <div class="viewpermi1">Update</div>
+      <div class="viewpermi1">Read</div>
+   </section>
+   <section class=" scrollbar" >
+      <section class="viewpermission1" *ngFor="let detail of webRoledetail" >
+         <div class="viewpermi">{{detail.subEntityName}}</div>
+         <div class="viewpermi"><input type="checkbox">
+         </div>
+         <div class="viewpermi"><input type="checkbox">
+         </div>
+         <div class="viewpermi"><input type="checkbox">
+         </div>
+      </section>
+   </section>
+</section>
+<section id="demo" class="sectionOpen collapse" *ngIf="mobileRoledetail.length>0" >
+
+<p class="PermissionMapping" style="margin-top: 15px;">Mobile Permission Mapping</p>
+   <section class="viewpermission">
+      <div class="viewpermi1">Entity</div>
+      <div class="viewpermi1">Create</div>
+      <div class="viewpermi1">Update</div>
+      <div class="viewpermi1">Read</div>
+   </section>
+
+   <section class="scrollbar" >
+      <section class="viewpermission1" *ngFor="let detail of mobileRoledetail">
+         <div class="viewpermi">{{detail.subEntityName}}</div>
+         <div class="viewpermi"><input *ngIf="detail.permissionId==1" type="checkbox">
+         </div>
+         <div class="viewpermi"><input *ngIf="detail.permissionId==1" type="checkbox">
+         </div>
+         <div class="viewpermi"><input *ngIf="detail.permissionId==1" type="checkbox">
+         </div>
+      </section>
+
+   </section>
+
+</section>
+</div>
+
+
+datat_for_branch=   let data={
+  "message": "Success",
+  "data": [
+    {
+      "branchId": 2,
+      "parentBranchId": 2,
+      "branchCode": "ABO02",
+      "branchName": "ABOHAR-02",
+      "isDefault": 0,
+      "branchtypeId": 2,
+      "status": 1,
+      "address": "Delhi",
+      "branchType": "REGION",
+      "effective_date": "",
+      "expiryDate": ""
+    },
+    {
+      "branchId": 3,
+      "parentBranchId": 3,
+      "branchCode": "ABO03",
+      "regionBranch": "ABOHAR-02",
+      "branchName": "ABOHAR-03",
+      "isDefault": 0,
+      "branchtypeId": 3,
+      "status": 1,
+      "address": "Jaipur",
+      "branchType": "AREA",
+      "effective_date": "",
+      "expiryDate": ""
+    },
+    {
+      "branchId": 4,
+      "parentBranchId": 0,
+      "branchCode": "ABO04",
+      "regionBranch": "ABOHAR-02",
+      "branchName": "ABOHAR-04",
+      "isDefault": 0,
+      "branchtypeId": 4,
+      "status": 1,
+      "address": "Chandigarh",
+      "branchType": "NRM",
+      "effective_date": "",
+      "expiryDate": ""
+    },
+    {
+      "branchId": 1,
+      "parentBranchId": 1,
+      "branchCode": "ABO01",
+      "branchName": "ABOHAR-01",
+      "isDefault": 0,
+      "branchtypeId": 1,
+      "status": 1,
+      "address": "GURUGRAM",
+      "branchType": "CORPORATE",
+      "effective_date": "",
+      "expiryDate": ""
+    }
+  ]

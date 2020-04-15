@@ -1,0 +1,154 @@
+
+          
+.timeline {
+    width: 80%;
+    height: 100px;
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;      
+    justify-content: center;    
+  }
+  
+  .timeline .events {
+    position: relative;
+    background-color: #27ae60;
+    height: 3px;
+    width: 100%;
+    border-radius: 4px;
+    margin: 5em 0;
+   }
+  
+  .timeline .events ol {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+  
+  .timeline .events ul {
+    list-style: none;
+  }
+  
+  .timeline .events ul li {
+    display: inline-block;
+    width: 24.65%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    position: relative;
+    top: -6px;
+  }
+  
+  .timeline .events ul li a {
+    font-weight: 700;
+    font-size: 1.25em;
+    color: #606060;
+    text-decoration: none;
+    position: relative;
+    top: -32px;
+  }
+  
+  .timeline .events ul li a:after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    right: auto;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    box-shadow: 0 4px 5px 0 rgba(165, 162, 162, 0.14), 0 1px 10px 0 rgba(171, 168, 168, 0.12), 0 2px 4px -1px rgba(173, 171, 171, 0.3);
+    background-color: #606060;
+    transition: 0.3s ease;
+    transform: translateX(-50%);
+  }
+  
+  .timeline .events ul li a:hover::after {
+    background-color: #27ae60;
+    border-color: #fff;
+  }
+  
+  .timeline .events ul li a.selected:after {
+    background-color: #27ae60;
+    border-color: #fff;
+    /* content: '\f058';
+    font-family: fontAwesome; */
+  }
+  
+  .timeline .events ul li a.current:after {
+    background-color: #27ae60;
+    border-color: #fff;
+  }
+  
+  span.time_line{
+    position: absolute;
+    line-height: 18px;
+    left: 0;
+    right: 0;
+    top: 26px;
+  }
+
+  .track_bill_card {
+      background-color: #fff;
+      box-shadow: 0 4px 5px 0 rgba(165, 162, 162, 0.14), 0 1px 10px 0 rgba(171, 168, 168, 0.12), 0 2px 4px -1px rgba(173, 171, 171, 0.3);
+      border-radius: 2px;
+      padding: 30px;
+      margin: 60px;
+      
+  }
+
+  .track_bill_card_1 h3{
+      color: #27ae60;
+      font-weight: 700;
+  }
+
+  .track_bill_card_1 h4{
+      font-weight: 700;
+  }
+
+  .track_bill_card_1 p{
+      margin: 0;
+  }
+  
+/* table css start */
+.mat-table {
+  display: block;
+  font-family: inherit;
+  border: 1px solid #ddd;
+}
+
+.mr-top-0 {
+  margin-top: 0px !important;
+}
+
+.mat-row,
+.mat-header-row {
+  display: flex;
+  border-bottom: 1px solid #aaa;
+  align-items: center;
+  min-height: 33px;
+  padding: 0 24px;
+}
+
+.mat-cell,
+.mat-header-cell {
+  flex: 1;
+  overflow: hidden;
+  word-wrap: break-word;
+}
+.card_body{
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 60px;
+}
+.card_body{
+  box-shadow: 0 4px 5px 0 rgba(165, 162, 162, 0.14), 0 1px 10px 0 rgba(171, 168, 168, 0.12), 0 2px 4px -1px rgba(173, 171, 171, 0.3);
+}
+.bg_dark_grey{
+  background-color: #808080;
+  color: #fff;
+  font-weight: 700;
+}
+.bg_dark_grey .mat_cell_head{
+  color: #fff;
+}

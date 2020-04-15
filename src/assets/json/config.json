@@ -1,0 +1,12 @@
+{
+  "API_ENDPOINT_LOCAL" : "http://localhost:3000/",
+  "API_ENDPOINT" :  "http://internal-a4442250f27aa11ea9bac0a3257c4306-879971059.ap-south-1.elb.amazonaws.com/",
+  "API_ENDPOINT_AUTH" :  "http://internal-af19f2c033c4111ea9bac0a3257c4306-911222744.ap-south-1.elb.amazonaws.com/",
+  "API_ENDPOINT_K8" : "",
+  "branchCode" : "B1",
+  "journeyId" : "A1",
+  "userId" : "",
+  "defaultBranchcode" : ""
+}
+
+

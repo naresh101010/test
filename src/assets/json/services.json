@@ -1,0 +1,97 @@
+{
+    "message": "string",
+    "offerings": [
+      {
+        "contractId": 0,
+        "id": 0,
+        "lkpServiceLineId": 0,
+        "serviceOfferingId": 0
+      }
+    ],
+    "refernceList": {
+      "businessTypeList": [
+        {
+          "id": 0,
+          "lookupVal": "string"
+        }
+      ],
+      "chargeByList": [
+        {
+          "id": 0,
+          "lookupVal": "string"
+        }
+      ],
+      "contractTypeList": [
+        {
+          "id": 0,
+          "lookupVal": "string"
+        }
+      ],
+      "opporTypeList": [
+        {
+          "id": 0,
+          "lookupVal": "string"
+        }
+      ],
+      "packagingTypeList": [
+        {
+          "id": 0,
+          "lookupVal": "string"
+        }
+      ],
+      "productCategoryList": [
+        {
+          "id": 0,
+          "lookupVal": "string"
+        }
+      ],
+      "rateGroupList": [
+        {
+          "id": 0,
+          "lookupVal": "string"
+        }
+      ],
+      "safexPincodeGroupList": [
+        {
+          "id": 0,
+          "lookupVal": "string"
+        }
+      ],
+      "safexTypeList": [
+        {
+          "id": 0,
+          "lookupVal": "string"
+        }
+      ],
+      "serviceLineList": [
+        {
+          "id": 0,
+          "lookupVal": "string"
+        }
+      ],
+      "serviceOfferingList": [
+        {
+          "id": 0,
+          "lookupVal": "string"
+        }
+      ],
+      "slabProtectTypeList": [
+        {
+          "id": 0,
+          "lookupVal": "string"
+        }
+      ],
+      "stateGroupList": [
+        {
+          "id": 0,
+          "lookupVal": "string"
+        }
+      ],
+      "statusList": [
+        {
+          "id": 0,
+          "lookupVal": "string"
+        }
+      ]
+    }
+  }

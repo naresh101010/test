@@ -1,0 +1,546 @@
+<div  class="page-section">
+    <div class="row text-left">
+          <div class="breadcrumb">
+            <a href="/#/user-management/object" target="_self">Dashboard</a><span class="fa fa-caret-right"></span>
+             MDM<span class="fa fa-caret-right"></span>
+             User Management<span class="fa fa-caret-right"></span>Create User
+        </div>
+    </div>
+  <div style="position: relative;">
+    <h2 class="page-header">Create User</h2>
+    <i  class="shortcutskeys">For save use Ctrl+s</i>
+  </div>
+
+  <!--custom code START-->
+   <mat-card id="shadow">
+    <form name="form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
+     <div class="row">
+
+      <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="form-group required">
+          <div class="control-label col-lg-3  col-md-3 col-sm-3"><label class="input-label">User Id</label></div>
+          <div class="col-lg-4 col-md-4 col-sm-4">
+            <input class="form-control input-md1" (keyup)="textlimit50()" autocomplete="true" placeholder="User Id"
+            (focusout)="validateAdUser(newdata.userId)" name="userId" #userId="ngModel" [(ngModel)]="newdata.userId" required minlength="3"
+             [ngClass]="{ 'is-invalid': f.submitted && userId.invalid }" maxlength="50">
+              <span id="tickmark" *ngIf="newdata.userId.length==0"></span>
+              <!-- <span id="tickmark" *ngIf=" (3 > newdata.userId.length) && (newdata.userId.length >0)"><i id="validationmark" class="fa fa-times" aria-hidden="true"></i></span> -->
+              <div *ngIf="validUser && !(userId.invalid && (userId.dirty && userId.touched))" class="error">Not found in AD!</div>
+            <div *ngIf="userId.invalid && (userId.dirty || userId.touched)" class="error">
+                <div *ngIf="(userId.dirty || userId.touched || userId.errors.minlength) && isUserIdHasValue" class="error">Minimum 3 chars required.</div>
+            </div>
+              <!-- On Submit -->
+            <div *ngIf="(f.submitted && userId.invalid )|| !isUserIdHasValue" class="invalid-feedback" class="error" autocomplete="off">
+            <div *ngIf="!isUserIdHasValue || userId.errors.required" class="error">User id is required.</div>
+            </div>
+          <!-- On Submit -->
+          </div>
+          <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+            <span id="tickmark1" *ngIf="greentick"><i class="fa fa-check-circle fa-2x"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="form-group required">
+            <div class="col-lg-4 col-md-4 col-sm-4"></div>
+          <div class="control-label col-lg-3  col-md-3 col-sm-3"><label class="input-label">Mobile No.</label></div>
+          <div class="col-lg-4 col-md-4 col-sm-4">
+            <input autocomplete="true" type="tel" pattern="[0-9]*" numeric class="form-control input-md1" placeholder="Mobile No."  required
+            name="mobile" #mobile="ngModel" [(ngModel)]="newdata.mobile" (keyup) = 'isMobileHasValue =true'  maxlength="10" minlength="10" [ngClass]="{ 'is-invalid': f.submitted && mobile.invalid }"/>
+            <span id="tickmark" *ngIf="newdata.mobile.length==0"></span>
+            <!-- <span id="tickmark" *ngIf=" (10 > newdata.mobile.length) && (newdata.mobile.length >0)" ><i id="validationmark4" class="fa fa-times" aria-hidden="true"></i></span> -->
+            <!-- touch -->
+            <div *ngIf="mobile.invalid && (mobile.dirty || mobile.touched)" class="error">
+            <div *ngIf="((mobile.dirty || mobile.touched || mobile.errors.minlength || mobile.errors.maxlength ) && isMobileHasValue)" class="error">Mobile number should be 10 digit only.</div>
+            </div>
+            <!-- submit -->
+            <div *ngIf="f.submitted && mobile.invalid || !isMobileHasValue" class="invalid-feedback" class="error">
+            <div *ngIf="!isMobileHasValue || mobile.errors.required" class="error">Mobile number is required.</div>
+            </div>
+                  <!-- Mobile -->
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+              <span id="tickmark1" *ngIf="(newdata.mobile.length==10) && !mobile.errors?.pattern"><i class="fa fa-check-circle fa-2x"></i></span>
+            </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-md-6 col-sm-6" style="margin-top: 2.0rem;">
+        <div class="form-group required">
+          <div class="control-label col-lg-3  col-md-3 col-sm-3"><label class="input-label">Name</label></div>
+          <div class="col-lg-4 col-md-4 col-sm-4">
+            <input autocomplete="true" type="tel" class="form-control input-md1" placeholder="Full name"required maxlength="50"
+            name="name" #name="ngModel" (keyup) = 'validateUser(newdata.name)' (blur) = 'trimUserName()'  [(ngModel)]="newdata.name" minlength="3" [ngClass]="{ 'is-invalid': f.submitted && name.invalid }"/>
+                  <span id="tickmark" *ngIf="newdata.name.length==0"></span>
+                  <!-- <span id="tickmark" *ngIf=" (3 > newdata.name.length) && (newdata.name.length >0)"><i id="validationmark2" class="fa fa-times" aria-hidden="true"></i></span> -->
+                  <!-- on Touch -->
+                <div *ngIf="!validNameFlag && (name.dirty || name.touched)" class="error">
+                    <div *ngIf="!validNameFlag && isUserNameHasValue" class="error">Name must be at least 3 characters long.</div>
+                </div>
+                   <!-- Mobile -->
+               <div *ngIf="(f.submitted && name.invalid) || !isUserNameHasValue" class="invalid-feedback" class="error">
+                <div *ngIf="!isUserNameHasValue || name.errors.required" class="error">Name is required.</div>
+               </div>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+              <span id="tickmark1" *ngIf="validNameFlag" ><i class="fa fa-check-circle fa-2x"></i></span>
+            </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-md-6 col-sm-6" style="margin-top: 2.0rem;">
+        <div class="form-group required">
+            <div class="col-lg-4 col-md-4 col-sm-4"></div>
+          <div class="control-label col-lg-3  col-md-3 col-sm-3"><label class="input-label">User Category</label></div>
+          <div class="col-lg-4 col-md-4 col-sm-3">
+            <ng-select   [clearable]="false" [searchable]="false" appendTo="body"
+              [(ngModel)]="newdata.categoryId" name="categoryId" #categoryId="ngModel"  >
+              <ng-option *ngFor='let Cat of CatData.responseData' [value]="Cat.id">{{Cat.lookupVal}}</ng-option>
+            </ng-select>
+            <ngx-spinner id="spinner" size="large" type="ball-spin-clockwise">
+            </ngx-spinner>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-md-6 col-sm-6" style="margin-top: 2.0rem;">
+        <div class="form-group required">
+          <div class="control-label col-lg-3  col-md-3 col-sm-3"><label class="input-label">Email Id</label ></div>
+          <div class="col-lg-4 col-md-4 col-sm-4">
+            <input autocomplete="true" type="text" class="form-control input-md1" placeholder="Email Id" autocomplete="off"
+            required name="email" #email="ngModel" [(ngModel)]="newdata.email" placeholder="SFX@SAFEXPRESS.COM"
+            (keyup) ="emailValidation()" (focusout)="emailValidation()" pattern="[A-Za-z_0-9.]{2,}@([A-Za-z0-9]{1,}[.]{1}[A-Za-z]{2,6}|[A-Za-z0-9]{1,}[.][A-Za-z]{2,6}[.]{1}[A-Za-z]{2,6})$"
+            [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" maxlength="50"  mwlTextInputAutocomplete
+            [findChoices]="findChoices"
+            [getChoiceLabel]="getChoiceLabel"/>
+            <span id="tickmark" *ngIf="newdata.mobile.length==0"></span>
+            <!-- on Touch -->
+            <div *ngIf="emailPattern" class="error">
+                <div >SFX@SAFEXPRESS.COM
+                <!-- <span id="tickmark" ><i id="validationmark3" class="fa fa-times" aria-hidden="true"></i></span>                 -->
+                </div>
+                <!-- <div *ngIf="newdata.email.pattern==">xyz</div> -->
+            </div>
+            <!-- email -->
+            <div *ngIf="(f.submitted && email.invalid) || !isEmailHasValue" class="error">
+            <div *ngIf="!isEmailHasValue || email.errors?.required" class="error">Email is required</div>
+            </div>
+            <!-- email -->
+            </div>
+
+
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+              <span *ngIf="emailPattern==false" id="tickmark1"><i class="fa fa-check-circle fa-2x"></i></span>
+            </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-md-6 col-sm-6" style="margin-top: 2.0rem;">
+        <div class="form-group required">
+            <div class="col-lg-4 col-md-4 col-sm-4"></div>
+          <div class="control-label col-lg-3  col-md-3 col-sm-3">
+            <label class="input-label">Department</label>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-4">
+            <ng-select   [clearable]="false" [searchable]="false" appendTo="body"
+               [(ngModel)]="newdata.userDepartment" name="DptcategoryId">
+              <ng-option *ngFor='let Dpt of userDepartmentList' [value]="Dpt.id">{{Dpt.lookupVal}}</ng-option>
+            </ng-select>
+            </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6" style="margin-top: 2.0rem;">
+        <div class="form-group required">
+          <div class="control-label col-lg-3  col-md-3 col-sm-3">
+            <label class="input-label required">Primary Module</label>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-4">
+            <ng-select   [clearable]="false" [searchable]="false" appendTo="body"
+               [(ngModel)]="newdata.menuHierarchyId" name="DptMenuHierarchyId"  >
+              <ng-option *ngFor='let item of DepartmentHierarchyMenu' [value]="item.id">{{item.menuLabel}}</ng-option>
+            </ng-select>
+            </div>
+        </div>
+      </div>
+
+<!--       Is Admin-->
+       <div class="col-lg-6 col-md-6 col-sm-6" style="margin-top: 2.0rem;" *ngIf="isAdminFlag && this.newdata.categoryId!=146">
+         <div class="form-group ">
+           <div class="col-lg-4 col-md-4 col-sm-4"></div>
+           <div class="control-label col-lg-3  col-md-3 col-sm-3">
+             <label class="input-label ">Is Admin</label>
+           </div>
+           <div class="col-lg-4 col-md-4 col-sm-4">
+
+             <mat-checkbox  [disabled]="true" (change)="adminCheck($event)" > </mat-checkbox>
+           </div>
+
+         </div>
+       </div>
+<!--       is Admin close-->
+    </div>
+
+    <div style="margin-top: 1%;">
+      <mat-accordion id="shadow">
+        <mat-expansion-panel id="box-shadow" [disabled]="isDisabled">
+          <mat-expansion-panel-header (click)="validateUserDetails()">
+             Default Branch Mapping<span style="color: red;">*</span>
+            <span *ngIf='this.newdata.defaultBranch.branchCode.length <=0' style="color: red;font-size: smaller;">&ensp;Default branch is mandatory</span>
+          </mat-expansion-panel-header>
+          <!-- <mat-card style="padding: 0; margin-top: 2.0rem;"> -->
+              <!-- Current Default Branch : {{CurrentDefault}} -->
+              <div class="marginTop2o">
+              <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-sx-6" style="padding-left: 0;">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-sx-4  label1">Current Default Branch</div>
+              <div class="col-lg-4 col-md-4 col-sm-4 col-sx-4 text-left label1" style="margin-left: 1.4rem;">  {{userBranch}}
+                <!-- <input autocomplete="true" readonly  type="hidden" class="branch-input form-control input-md" name="subEntityName"
+                [(ngModel)] = "userBranch" required/> -->
+              </div>
+              </div>
+              </div>
+
+            <div class="row" style="margin-top: 2.0rem;">
+              <div class="col-lg-6 col-md-6 col-sm-6 form-group required">
+                  <div class="control-label col-lg-4  col-md-4 col-sm-4 label1 input-label">
+                    Search By Branch {{SearchTypeDefault | titlecase}}
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-3">
+                    <a (click)="openDialog()"  style="cursor: pointer;">
+                      <span style="cursor: pointer;" class="fa fa-search fa-lg" id="defualtBranchSearch" ></span>
+                     <input autocomplete="true" readonly list="brow3" type="text" class="branch-input form-control input-md" name="subEntityName" placeholder="Search"
+                      (change)="onDefaultBranchChanged(userFilter.branchCode)" required/></a>
+                  </div>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-4">
+                <div class="form-group">
+                  <div class="control-label col-lg-4  col-md-4 col-sm-4"></div>
+                  <div class="col-lg-8 col-md-8 col-sm-8"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- </mat-card> -->
+        </mat-expansion-panel>
+        <mat-expansion-panel id="box-shadow" *ngIf="this.newdata.categoryId!=146" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>Privilege Branch Mapping</mat-expansion-panel-header>
+          <div class="marginTop2o">
+            <div>
+              <div class=" row col-lg-6 col-md-6 col-sm-6">
+                <div class="form-group">
+                  <div class="control-label col-lg-4  col-md-4 col-sm-4">
+                    <label class="input-label">Search By Branch {{SearchType | titlecase}}</label>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-3">
+                  <a (click)="openDialogPrivi()" style="cursor: pointer;">
+                  <span style="cursor: pointer;" class="fa fa-search fa-lg" id="defualtBranchSearch" ></span>
+                  <input autocomplete="true" readonly list="brow1" type="text"  (change)="onpriviBranchChanged(priFilter.branchCode)"
+                    class="branch-input form-control input-md" name="subEntityName1" placeholder="search"/>
+                  </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-4">
+                <div class="form-group">
+                  <div class="control-label col-lg-4  col-md-4 col-sm-4"></div>
+                  <div class="col-lg-8 col-md-8 col-sm-8"></div>
+                </div>
+              </div><br>
+              <table class="table" style="margin-top: 1.5rem;">
+                  <thead>
+                    <tr>
+                      <th style="width: 16%;">Branch Code</th>
+                      <th style="width: 16%;">Branch Name</th>
+                      <th style="width: 16%;">Effective Date</th>
+                      <th style="width: 16%;">Expiry Date</th>
+                      <th style="width: 5%;">&nbsp;</th>
+                      <th >&nbsp;</th>
+
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let priviarr of newdata.previlegeBranches;let j= index">
+                      <tr>
+                        <td>{{priviarr.branchCode}}</td>
+                        <td>{{priviarr.branchName}}</td>
+                        <td *ngIf="j!=indexval">{{ priviarr.effectiveDate | date: 'dd/MM/yyyy'}}</td>
+                        <td *ngIf="j!=indexval"> {{priviarr.expiryDate | date: 'dd/MM/yyyy'}}</td>
+                        <td  *ngIf="j==indexval">
+
+
+                            <!-- effective date -->
+                           <mat-form-field appearance="outline" id="datepick" style="width: 55%;">
+                                <input matInput [matDatepicker]="pickerfuel1" placeholder="DD/MM/YY" autocomplete="off" [ngModel]="priviarr.effectiveDate"
+                                       (ngModelChange) = "dateChangeEffectiveDate($event, priviarr.effectiveDate, priviarr.expiryDate, j, priviarr)"
+                                name="effectiveDate" [max]="priviarr.effectiveDate_max" [min]="priviarr.effectiveDate_min">
+                                <mat-datepicker #pickerfuel1></mat-datepicker>
+                                <mat-datepicker-toggle matSuffix [for]="pickerfuel1"></mat-datepicker-toggle>
+                              </mat-form-field>
+                          <div *ngIf="!effectiveDateFlag" style="color: red;">{{effectiveDateErrorMessage}}</div>
+                         </td>
+
+                        <td *ngIf="j==indexval">
+
+                          <!-- expiry date -->
+                           <mat-form-field appearance="outline" id="datepick" style="width: 55%;">
+                                <input
+                                [min]="priviarr.expiryDate_min"
+                                [max]="priviarr.expiryDate_max"
+                                autocomplete="off"
+                                matInput
+                                [matDatepicker]="pickerfuel"
+                                placeholder="DD/MM/YY"
+                                [ngModel]="priviarr.expiryDate"
+                                (ngModelChange) = "dateChange($event, priviarr.expiryDate, priviarr.effectiveDate, j, priviarr)"
+                                #expiryDate="ngModel"
+                                name="expiryDate">
+                                <mat-datepicker #pickerfuel></mat-datepicker>
+                                <mat-datepicker-toggle matSuffix [for]="pickerfuel"></mat-datepicker-toggle>
+                              </mat-form-field>
+                          <div *ngIf ="expiryDateFlag" style="color: red;">{{expiryDateErrorMessage}}</div>
+                        </td>
+                        <td *ngIf="j!=indexval" >
+                          <mat-icon  class="userCreateIcon" style="cursor: pointer; width: fit-content;" (click)="priviEffect(j);ExpDatePriviListEvent(priviarr.effectiveDate, priviarr.expiryDate);EffDatePriviListEvent(priviarr.effectiveDate, priviarr.expiryDate);">create</mat-icon>
+                        </td>
+
+                        <td *ngIf="j==indexval">
+                          <button  mat-button color="warn" (click)="savePriviBranchChanged(priviarr.branchCode,j)">
+                            <mat-icon class="userCreateIcon" style="cursor: pointer; width: fit-content;" >save</mat-icon>
+                          </button>
+                         <span *ngIf="(effectiveDateFlag && !expiryDateFlag)" >Save</span>
+                          <span *ngIf="(!effectiveDateFlag || expiryDateFlag)" >Revert</span>
+                        </td>
+                        <td>
+                          <mat-icon  style="cursor: pointer; width: fit-content;" (click)="removePriviBranchChanged(priviarr.branchCode,j)" class=" userCreateIcon">delete</mat-icon>
+                      </td>
+
+
+                      </tr>
+                    </tbody>
+                </table>
+           </div>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel id="box-shadow"  (opened)="panelOpenState = true " (closed)="panelOpenState = false" >
+          <mat-expansion-panel-header (click)="roleMaping()">Role Mapping<span style="color: red;">* &nbsp;</span>
+           <span *ngIf='this.newdata.userRoles.length <=0' style="color: red;font-size: smaller;">Please provide at least one role</span>
+          </mat-expansion-panel-header>
+          <div class="marginTop2o">
+            <div class="row">
+              <div class="form-group requiredcol-lg-6 col-md-6 col-sm-6 row">
+                  <div class="col-lg-4  col-md-4 col-sm-4 label1 input-label">
+                    Select Role to Add</div>
+                  <div class="col-lg-4 col-md-4 col-sm-4">
+                      <span class="fa fa-search fa-lg" id="defualtBranchSearch" ></span>
+                    <ng-select id="role-search"
+                      [clearable]="false"
+                       appendTo="body"
+                      (open) = 'roleSearchFilter(null)'
+                      [items] = "roleSrchData"
+                      (ngModelChange)="onroleBranchChanged($event)"
+                      name="roleName"
+                      bindLabel="roleName"
+                      (search) ='roleSearchFilter($event)'
+                      placeholder = 'SEARCH'
+                      [(ngModel)]="selectedRole"
+                      >
+                     </ng-select>
+
+                  </div>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-4">
+                <div class="form-group">
+                  <div class="control-label col-lg-4  col-md-4 col-sm-4"></div>
+                  <div class="col-lg-8 col-md-8 col-sm-8"></div>
+                </div>
+              </div><br>
+
+                <!-- mAT TABLE -->
+
+          <table mat-table [dataSource]="dataSource" multiTemplateDataRows
+                class="mat-elevation-z8" style="margin-top: 1.5rem;">
+             <ng-container matColumnDef="roleName">
+                <th mat-header-cell *matHeaderCellDef> Role Name </th>
+                <!-- <td mat-cell *matCellDef="let element"> Credit Contract </td> -->
+                <td mat-cell *matCellDef="let element">{{element.roleName}}</td>
+              </ng-container>
+
+            <ng-container matColumnDef="effectiveDate">
+              <th mat-header-cell *matHeaderCellDef> Effective Date </th>
+              <td mat-cell *matCellDef="let element; let j = index">
+                <span *ngIf="!element.editDate">{{element.effectiveDate | date: 'dd/MM/yyyy'}}</span>
+                <span *ngIf="element.editDate">
+                      <mat-form-field appearance="outline" id="datepick" style="width: 45%;" >
+                      <input matInput   [matDatepicker]="pickerfuel1" placeholder="DD/MM/YYYY" autocomplete="off" [(ngModel)]="element.effectiveDate"
+                             (ngModelChange) = "dateChangeEffectiveDate($event, element.effectiveDate, element.expiryDate, j, element)"
+                             [max]="element.effectiveDate_max" [min]="element.effectiveDate_min"
+                             #effectiveDate="ngModel"
+                             name="effectiveDate">
+                  <mat-datepicker #pickerfuel1></mat-datepicker>
+                  <mat-datepicker-toggle matSuffix [for]="pickerfuel1"></mat-datepicker-toggle>
+                </mat-form-field>
+                <div *ngIf="!effectiveDateFlag" style="color: red;">{{effectiveDateErrorMessage}}</div>
+                    </span>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="expiryDate">
+              <th mat-header-cell *matHeaderCellDef> Expiry Date </th>
+              <td mat-cell *matCellDef="let element; let j = index">
+                <span *ngIf="!element.editDate">{{element.expiryDate | date: 'dd/MM/yyyy'}}</span>
+                <span *ngIf="element.editDate">
+                      <mat-form-field appearance="outline" id="datepick"  style="width: 45%;" >
+                      <input matInput [matDatepicker]="pickerfuel" placeholder="DD/MM/YYYY" autocomplete="off" [(ngModel)]="element.expiryDate"
+                             [min]="element.expiryDate_min" [max]="element.expiryDate_max" (ngModelChange) = "dateChange($event, element.expiryDate, element.effectiveDate, element, expiryDate)"
+                             #expiryDate="ngModel"
+                             name="expiryDate">
+                  <mat-datepicker #pickerfuel></mat-datepicker>
+                  <mat-datepicker-toggle matSuffix [for]="pickerfuel"></mat-datepicker-toggle>
+                </mat-form-field>
+                   <div *ngIf ="expiryDateFlag" style="color: red;">{{expiryDateErrorMessage}}</div>
+                    </span>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="editOperation">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element">
+                    <span>
+                      <mat-icon *ngIf="!element.saveIcon"  class="icon-font userCreateIcon" (click)="editRole(element, j)">create</mat-icon>
+                    </span>
+                <span *ngIf="element.saveIcon"  >
+                      <mat-icon  class="userCreateIcon"  style="cursor: pointer; width: fit-content;"
+                                 (click)="saveRoleChange(element, element.roleId,j)">save</mat-icon>
+                    </span>
+              </td>
+            </ng-container>
+
+              <ng-container matColumnDef="status">
+                  <th mat-header-cell *matHeaderCellDef> Role Permission </th>
+                  <td mat-cell *matCellDef="let element" (click)='getRoledetail(element.roleId)'><a>View Permission</a></td>
+              </ng-container>
+
+              <ng-container matColumnDef="delete">
+                <!-- <th *matHeaderCellDef> Delete </th> -->
+                <th mat-header-cell *matHeaderCellDef> Delete </th>
+                <td *matCellDef="let element; let j = index;" (click)="removeRoleList(element,j)">
+                  <!-- <button mat-button color="warn" (click)="removeRoleList(element,j)"> -->
+                    <mat-icon style="cursor: pointer;"
+                      (click)="removeRoleList(element,j)" class="example-icon">delete</mat-icon>
+                  <!-- </button> -->
+                </td>
+
+              </ng-container>
+
+             <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+             <ng-container matColumnDef="expandedDetail">
+               <td mat-cell *matCellDef="let element" [attr.colspan]="6">
+                 <div class="example-element-detail" *ngIf="activeRoleId == element.roleId">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  *ngIf='webData.length>0'>
+                      <p class="permission">WEB PERMISSION</p>
+                   <table mat-table [dataSource]="webData">
+                     <!-- Name Column -->
+                     <ng-container matColumnDef="name">
+                       <th mat-header-cell *matHeaderCellDef> Entity </th>
+                       <td mat-cell *matCellDef="let element2">{{element2.subEntityName}} </td>
+                     </ng-container>
+
+                     <!-- Weight Column -->
+                     <ng-container matColumnDef="weight">
+                       <th mat-header-cell *matHeaderCellDef> Create  </th>
+                       <td mat-cell *matCellDef="let element2">
+                          <mat-checkbox [disabled]="true"  [checked]="element2.WCreate" ></mat-checkbox>
+                       </td>
+                     </ng-container>
+
+                     <!-- Symbol Column -->
+                     <ng-container matColumnDef="symbol">
+                       <th mat-header-cell *matHeaderCellDef> Update </th>
+                       <td mat-cell *matCellDef="let element2">
+                         <mat-checkbox [disabled]="true" [checked]="element2.WUpdate"></mat-checkbox> </td>
+                     </ng-container>
+
+                        <!-- Position Column -->
+                        <ng-container matColumnDef="position">
+                            <th mat-header-cell *matHeaderCellDef> Read </th>
+                            <td mat-cell *matCellDef="let element2">
+                              <mat-checkbox [disabled]="true" [checked]="element2.WRead"></mat-checkbox> </td>
+                          </ng-container>
+
+                     <tr mat-header-row *matHeaderRowDef="columnsToDisplay2"></tr>
+                     <tr mat-row *matRowDef="let row2; columns: columnsToDisplay2;"></tr>
+                   </table>
+                    </div>
+                    <!-- </div> -->
+
+                   <!--
+                     /////////////  FOR MOBILE PERMISSION
+                    -->
+                    <!-- <div class="row"  *ngIf='mobileData.length>0'> -->
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" *ngIf='mobileData.length>0'>
+                      <p class="permission">MOBILE PERMISSION</p>
+                   <table mat-table [dataSource]="mobileData" >
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef> Entity </th>
+                        <td mat-cell *matCellDef="let element2">{{element2.subEntityName}} </td>
+                      </ng-container>
+                      <!-- Weight Column -->
+                      <ng-container matColumnDef="weight">
+                        <th mat-header-cell *matHeaderCellDef> Create  </th>
+                        <td mat-cell *matCellDef="let element2">
+                          <mat-checkbox [disabled]="true"  [checked]="element2.MCreate" ></mat-checkbox> </td>
+                      </ng-container>
+                      <!-- Symbol Column -->
+                      <ng-container matColumnDef="symbol">
+                        <th mat-header-cell *matHeaderCellDef> Update </th>
+                        <td mat-cell *matCellDef="let element2">
+                          <mat-checkbox [disabled]="true"  [checked]="element2.MUpdate" ></mat-checkbox> </td>
+                      </ng-container>
+                         <!-- Position Column -->
+                      <ng-container matColumnDef="position">
+                          <th mat-header-cell *matHeaderCellDef> Read </th>
+                          <td mat-cell *matCellDef="let element2">
+                             <mat-checkbox [disabled]="true"  [checked]="element2.MRead" ></mat-checkbox> </td>
+                      </ng-container>
+
+                      <tr mat-header-row *matHeaderRowDef="columnsToDisplay2"></tr>
+                      <tr mat-row *matRowDef="let row2; columns: columnsToDisplay2;"></tr>
+                  </table>
+                    </div>
+                    <!-- </div> -->
+
+                 </div>
+               </td>
+             </ng-container>
+
+             <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+             <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
+                 class="example-detail-row"
+                 [class.example-expanded-row]="expandedElement === element"
+                 (click)="expandedElement = expandedElement === element ? null : element">
+             </tr>
+             <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+           </table>
+
+               <!-- Toggle line -->
+
+                <!-- Pannel -->
+
+            </div>
+
+          </div>
+        </mat-expansion-panel>
+
+        <div class="example-button-row text-center" style="margin-top: 5%; margin-bottom: 2%;" *ngIf="submitBtn">
+<!--          [disabled]="!f.form.valid || validUser  || newdata.menuHierarchyId == ''  || !validateRole() || !userBranch "-->
+          <button [disabled]="!f.form.valid || !isEditRoleFlag || expiryDateFlag || !effectiveDateFlag|| validUser  || newdata.menuHierarchyId == ''  || !validateRole() || !userBranch "    id="submitButton"   class="btn1"  style="text-align: center" mat-raised-button color="primary" (click)="createUser();" >
+          <u>S</u><span>UBMIT</span></button>
+        </div>
+      </mat-accordion>
+    </div>
+    </form>
+  </mat-card>
+</div>
+
+
+

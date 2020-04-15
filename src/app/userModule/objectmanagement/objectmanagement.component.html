@@ -1,0 +1,119 @@
+<div class="row text-left">       
+    <div class="breadcrumb2">
+      <a href="/#/user-management/object" target="_self">Dashboard</a><span class="fa fa-caret-right"></span>
+       MDM<span class="fa fa-caret-right"></span>
+       Object Management
+  </div>
+  <h2 class="dashboard-heading">Object Management</h2>
+  <a  class="text-right align"  style="text-align: right;"><i (click)="ExportTOExcel()" style="cursor: pointer;">Download Objects Details</i></a>
+</div>
+<div class="dashboard-first-container" fxLayout  fxLayout.xs="column wrap"  fxLayoutAlign="center" fxLayoutGap="0px" fxLayoutGap.xs="0px">  
+  <div class="item item-4" fxFlex="100%"  fxFlexOffset.xs="0">
+    <mat-card style="flex-wrap: wrap" class="example-card " fxFlex="89%" id="lending">
+        <span class="fa fa-search fa-lg"  id="dashboard-search-r"></span>
+        <input maxlength="50" class="banner-input1" placeholder="SEARCH BY OBJECT NAME" autocomplete="true" (keypress)="validInput($event)" (keyup.enter)="applyFilter($event.target.value)">
+    <hr class="green-border-heading">
+    <div  mat-elevation-z8  #TABLE>
+        <table mat-table [dataSource]="dataSource" #table matSort >
+          <ng-container matColumnDef="subEntityName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header><p class="th-text">Object Name</p></th>
+            <td mat-cell *matCellDef="let element"><p class="th-text">{{ element.subEntityName | uppercase}}</p></td>
+          </ng-container>
+          <ng-container matColumnDef="moduleName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header><p class="th-text">Function Module</p></th>
+            <td mat-cell *matCellDef="let element"><p class="th-text">{{ element.moduleName | uppercase}}</p></td>
+          </ng-container>
+          <ng-container matColumnDef="entityName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header><p class="th-text">Section Name</p></th>
+            <td mat-cell *matCellDef="let element"><p class="th-text">{{ element.entityName | uppercase}}</p></td>
+          </ng-container>
+          <ng-container matColumnDef="symbol">
+            <th mat-header-cell *matHeaderCellDef><p class="th-text">View Details</p></th>
+            <td mat-cell  class="viewlink"  *matCellDef="let element"  style="padding-left: 0;">
+              <p class="th-text-view" (click)="sendViewId(element);">VIEW</p>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+        
+      </div>
+      <ngx-spinner id="spinner" size="large" type="ball-spin-clockwise">  
+
+      </ngx-spinner>
+      <div  [ngStyle]="{'opacity':paginaFlg ? '1':'0'}">
+        <mat-paginator 
+        #paginator
+        [pageSize]="10"
+        [pageSizeOptions]="[10, 15, 20]"
+        [showFirstLastButtons]="true"
+      ></mat-paginator>
+      </div>
+
+  
+    </mat-card>
+  </div>
+  <div fxFlex="1%"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   <!--  do not delete it, right side widget <div fxFlex="25%" fxLayout="row wrap" fxLayout.xs="column" style="height: 0; width: 100%;">
+    <mat-card class="example-card" id="lending2" >
+      <mat-card-header>
+        <div fxLayout="row wrap">
+            <a routerLink="/usercreate" style="cursor: pointer;"  *ngIf="(userPermission.includes('CREATE'))">
+              <mat-icon id="plusicon" mat-card-avatar aria-label="Example icon">add_circle</mat-icon>
+            </a>
+        <a routerLink="/user" id="routerlink">User Management</a></div>
+      </mat-card-header>
+      <hr class="green-border">
+      <div class="side-box">
+      <a routerLink="/user">
+      <span class="fa fa-search fa-lg" id="dashboard-side-search"></span>
+      <input class="banner-input" placeholder="Search">
+    </a>
+    </div>     
+    </mat-card>
+        <mat-card class="example-card"  id="lending3">
+            <mat-card-header>
+              <div fxLayout="row wrap">
+                  <a routerLink="/home" *ngIf="(rolePermission.includes('CREATE'))">
+                    <mat-icon id="plusicon" mat-card-avatar aria-label="Example icon">add_circle</mat-icon>
+                  </a>
+              <a routerLink="/role" id="routerlink">
+                Role Management
+                  </a>
+                </div>
+            </mat-card-header>
+            <hr class="green-border">
+            <div class="side-box">
+                <a routerLink="/home">
+            <span class="fa fa-search fa-lg" id="dashboard-side-search"></span>
+            <input class="banner-input" placeholder="Search"></a>
+          </div>         
+          </mat-card>
+  </div> -->
+</div>

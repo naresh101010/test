@@ -1,0 +1,80 @@
+<div  class="page-section">
+  <!-- breadcrumb -->
+   <div class="row text-left">
+    <div class="breadcrumb">
+      <a href="/#/user-management/object" target="_self">Dashboard</a><span class="fa fa-caret-right"></span>
+       MDM<span class="fa fa-caret-right"></span>
+       Object Management<span class="fa fa-caret-right"></span>Object Details
+  </div>
+  </div>
+<h2 class="page-header">Object Details</h2>
+<!--  <p  class="text-right align"  style="text-align: right; margin-left: 70%; font-size: large;   color:#27ae60 !important;" ><i>For save use Ctrl+s </i></p> -->
+<mat-card id="shadow">
+<!--custom code START-->
+<div class="row">
+  <!--  -->
+  <div class="col-lg-6 col-md-6 col-sm-6">
+    <div class="form-group">
+      <div class="control-label col-lg-3  col-md-3 col-sm-3"><label  class="input-label">Object Name</label></div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <input disabled type="text" name="subEntityName" [(ngModel)]="ddata.subEntityName" class="form-control input-md" placeholder= "Terms and Conditions"><br>
+        <mat-checkbox type="checkbox" name="IsPublic" [(ngModel)]="ddata.isPublic" (change)="isPublicChange($event)"  [checked]="(ddata.isPublic == 1) ? 'true' : 'false'">Is Publicly Viewable?</mat-checkbox>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6 col-md-6 col-sm-6">
+    <div class="form-group">
+        <div class="col-lg-4 col-md-4 col-sm-4"></div>
+      <div class="control-label col-lg-3  col-md-3 col-sm-3"><label  class="input-label">Channel</label></div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <!-- <input type="text" class="form-control input-md" placeholder= "Status"> -->
+        <mat-checkbox [disabled]="true" name="channel"   [checked]="isWeb" >Web</mat-checkbox><br>
+        <mat-checkbox [disabled]="true" name="channel1" [checked]="isMobile" >Mobile</mat-checkbox>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row" style="padding-top: 2.0rem;">
+
+    <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="form-group">
+          <div class="control-label col-lg-3  col-md-3 col-sm-3"><label class="input-label">Function Module</label></div>
+          <div class="col-lg-4 col-md-4 col-sm-4">
+            <!-- <select disabled class="form-control " [(ngModel)]="ddata.moduleName" id="sel1">
+                  <option name="moduleName" >{{ ddata.moduleName }}</option>
+            </select> -->
+
+           <ng-select disabled  [clearable]="false" [searchable]="false" appendTo="body"
+           [(ngModel)]="ddata.moduleName">
+           <ng-option name="moduleName">{{ddata.moduleName}}</ng-option>
+           </ng-select>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-md-6 col-sm-6">
+          <div class="form-group">
+              <div class="col-lg-4 col-md-4 col-sm-4"></div>
+            <div class="control-label col-lg-3  col-md-3 col-sm-3"><label class="input-label">Object Attributes</label></div>
+            <div class="col-lg-5 col-md-5 col-sm-5" >
+
+                <ul class=" form-control scroll_div list-style" >
+                  <li disabled *ngFor="let o of ddata.attributeExclutionList;let i = index" class="objectList2" (click)="myFunction(o,i)"> {{o.attributeName}}</li>
+                </ul>
+            </div>
+          </div>
+
+        </div>
+         <div class="example-button-row text-center" *ngxPermissionsOnly="['CREATE', 'UPDATE']">
+          <button class="btn1" style="text-align: center;  margin-bottom: 5%" mat-raised-button color="primary" (click)='editObject()'>Submit</button>
+        </div>
+
+</div>
+<!--custom code END-->
+</mat-card>
+</div>
+
+<ngx-spinner id="spinner" size="large" type="ball-spin-clockwise"></ngx-spinner>
